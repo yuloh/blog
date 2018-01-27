@@ -1,5 +1,5 @@
 ---
-title: "Protobuf PHP Services"
+title: "Writing Protobuf Services in PHP"
 date: 2018-01-27T14:59:42-05:00
 draft: false
 ---
