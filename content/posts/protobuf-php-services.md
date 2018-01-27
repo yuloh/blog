@@ -7,7 +7,7 @@ draft: false
 
 # Introduction
 
-Lately I've been investigating [Protobuf](https://developers.google.com/protocol-buffers/) as a replacement for JSON RPC services.  If you aren't familiar with Protobuf, it's a language neutral serialization format from Google.  It's most commonly associated with Google's RPC framework [GRPC](https://grpc.io/) but it can be used standalone too.  In this guide we are going to build a simple calculator RPC service using nothing but the Protobuf compiler and PHP.
+Lately I've been investigating [Protobuf](https://developers.google.com/protocol-buffers/) as a replacement for JSON RPC services.  If you aren't familiar with Protobuf, it's a language neutral serialization format from Google.  It's most commonly associated with Google's RPC framework [gRPC](https://grpc.io/) but it can be used standalone too.  In this guide we are going to build a simple calculator RPC service using nothing but the Protobuf compiler and PHP.
 
 ## Example Code
 
@@ -39,7 +39,7 @@ service Calculator {
 }
 ```
 
-The first line tells the protobuf compiler which version we want to use.  PHP only supports proto3 syntax.  The `package` specifier is optional but a good idea to avoid name clashes.  In the generated PHP code it will be converted to the namespace. the `php_generic_services` option tells the compiler we want to generate an interface for the service.  It's optional because you might be using a plugin like grpc that generates it's own service classes.
+The first line tells the protobuf compiler which version we want to use.  PHP only supports proto3 syntax.  The `package` specifier is optional but a good idea to avoid name clashes.  In the generated PHP code it will be converted to the namespace. the `php_generic_services` option tells the compiler we want to generate an interface for the service.  It's optional because you might be using a plugin like gRPC that generates it's own service classes.
 
 
 ## Messages
@@ -104,9 +104,7 @@ You will also need the protobuf runtime for PHP.  You can either install the run
 composer require google/protobuf
 ```
 
-# Writing the Code
-
-## Service
+# Writing The Service
 
 The interface has been generated but we still need to implement it.  Create a `src` directory and inside of it create the calculator service.
 
@@ -136,9 +134,9 @@ class Calculator implements CalculatorInterface
 
 The service implements a method for each `rpc` we defined in the proto.  The contract defined in the proto file is enforced by the generated interface.
 
-## HTTP Server
+# A Simple HTTP Server
 
-Let's test our service by making it available over HTTP.  Our HTTP script will check if the path is `/add` or `/subtract`.  if so it will deserialize the request, call the service, and return the serialized reply.  Save this to `public/index.php` and boot the built in webserver.
+Let's test our service by making it available over HTTP.  Our HTTP script will check if the path is `/add` or `/subtract`.  if so it will deserialize the request, call the service, and return the serialized reply.  Save this to `public/index.php`.
 
 A protocol buffer can be serialized to text, JSON, or an efficient binary format.  You should always prefer the binary format for production.  Not just for efficiency but also because it allows you to benefit from protobuf's backwards and forwards compatibility.
 
@@ -175,7 +173,7 @@ switch ($method) {
 }
 ```
 
-## Client
+# Implementing the Client
 
 We can use the same service interface to implement our client.  Our client implements a method corresponding to each method on the server and internally makes a cURL request to the server.
 
@@ -263,6 +261,7 @@ php -S localhost:8000 -t ./public
 Now in another terminal run the client.  You should see the result of your operations!
 
 ```bash
+$ php ./make_requests.php
 2 + 4 = 6
 5 - 4 = 1
 ```
