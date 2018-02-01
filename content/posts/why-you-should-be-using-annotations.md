@@ -1,6 +1,7 @@
 ---
 title: Why you should be using annotations (with Doctrine)
 date: 2016-02-19T12:00:00-05:00
+aliases: [2016/why-you-should-be-using-annotations/]
 ---
 
 # Introduction

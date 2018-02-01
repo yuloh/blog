@@ -1,6 +1,7 @@
 ---
 title: Automatically Run Unit Tests With entr
 date: 2016-03-31T12:00:00-05:00
+aliases: [/2016/automatically-run-unit-tests-with-entr/]
 ---
 
 # Introduction

@@ -1,6 +1,7 @@
 ---
 title: REST and DDD
 date: 2016-03-30T12:00:00-05:00
+aliases: [/2016/rest-and-ddd/]
 ---
 
 I recently gave a talk at the Laravel SF meetup about hexagonal architecture in PHP, and demonstrated it using Laravel.  Here's the slide deck I made:

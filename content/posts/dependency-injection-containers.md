@@ -1,6 +1,7 @@
 ---
 title: Understanding Dependency Injection Containers
 date: 2016-07-15T12:00:00-05:00
+aliases: [/2016/dependency-injection-containers/]
 ---
 
 # Introduction

@@ -1,6 +1,7 @@
 ---
 title: JSON Schema References
 date: 2016-05-05T12:00:00-05:00
+aliases: [/2016/json-schema-references/]
 ---
 
 ## Introduction

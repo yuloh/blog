@@ -1,6 +1,7 @@
 ---
 title: Don't Use Illuminate Support
 date: 2016-04-21T12:00:00-05:00
+aliases: [/2016/dont-use-illuminate-support/]
 ---
 
 **tl;dr**: If you are writing a framework agnostic package, don't use [illuminate/support](https://github.com/illuminate/support).

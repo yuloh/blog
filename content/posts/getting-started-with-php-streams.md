@@ -1,6 +1,7 @@
 ---
 title: Getting Started With PHP Streams
 date: 2015-11-04T12:00:00-05:00
+aliases: [/2015/getting-started-with-php-streams/]
 ---
 # Streams
 

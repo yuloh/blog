@@ -1,6 +1,7 @@
 ---
 title: Github Pages Best Practices
 date: 2016-04-12T12:00:00-05:00
+aliases: [/2016/github-pages-best-practices/]
 ---
 
 # Introduction

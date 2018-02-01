@@ -1,6 +1,7 @@
 ---
 title: Understanding Dependency Injection Containers Part II - Autowiring
 date: 2016-09-01T12:00:00-05:00
+aliases: [/2016/dependency-injection-containers-part-II-autowiring/]
 ---
 
 # Introduction

@@ -1,6 +1,7 @@
 ---
 title: IIFE LIFE - IIFE In PHP
 date: 2016-04-12T12:00:00-05:00
+aliases: [/2016/iife-life-iife-in-php/]
 ---
 
 ## Introduction

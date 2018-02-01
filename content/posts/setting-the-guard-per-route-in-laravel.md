@@ -1,6 +1,7 @@
 ---
 title: Setting the Guard Per Route in Laravel
 date: 2016-07-22T12:00:00-05:00
+aliases: [/2016/setting-the-guard-per-route-in-laravel/]
 ---
 
 **edit** you will be able to do this natively in 5.3. The auth middleware will set the default guard and the user resolver.
