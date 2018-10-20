@@ -1,5 +1,5 @@
 # Site settings
-baseurl = "https://matt-allan.netlify.com/"
+baseurl = "https://mattallan.org"
 themesDir = "./themes"
 languageCode = "en-us"
 title = "Matt Allan"
