@@ -5,7 +5,7 @@ date: 2018-01-27T16:10:45-05:00
 
 # Why
 
-This site is hosted on github pages and until today was built using Jekyll.  I would push commits and github would rebuild the site for me.  Locally I pulled in the github-pages gem so I could preview my site (you can read more about that [here](http://mattallan.org/posts/github-pages-best-practices/)).  Last week I got a notification that one of my gems had a security vulnerability so I updated everything.  I had to update my ruby version which made bundler happy but broke vim.  Then I updated vim which caused vim to be incompatible with my python version.  After I finally got bundler and vim working and commited my changes the next github pages build broke my site and spewed a bunch of broken HTML.
+This site is hosted on github pages and until today was built using Jekyll.  I would push commits and github would rebuild the site for me.  Locally I pulled in the github-pages gem so I could preview my site (you can read more about that [here](http://mattallan.org/posts/github-pages-best-practices/)).  Last week I got a notification that one of my gems had a security vulnerability so I updated everything.  I had to update my ruby version which made bundler happy but broke vim.  Then I updated vim which caused vim to be incompatible with my python version.  After I finally got bundler and vim working and committed my changes the next github pages build broke my site and spewed a bunch of broken HTML.
 
 I had been wanting to try [hugo](https://gohugo.io/) anyway so rather then spend my Saturday debugging Jekyll I made the switch.
 
