@@ -1,5 +1,5 @@
 ---
-title: "[meta] Moving From Jekyll to Hugo"
+title: "Moving From Jekyll to Hugo"
 date: 2018-01-27T16:10:45-05:00
 ---
 
