@@ -32,7 +32,7 @@ document.body.innerHTML = greeter(user);
 
 Modules were added natively to JavaScript in ES6, but most browsers don't support them yet.  To get around this you can transpile the ES6 module to another module format.  There are a lot of different formats that were popularized before ES6 to choose from.  By default TypeScript will transpile your modules into the CommonJS format, which you might know from node.
 
-Browers can't load the CommonJS modules either, so the typical solution is to run your code through _another_ tool, called a bundler.  The most popular tool for CommonJS modules is probably [Browserify](http://browserify.org/).  Since it's usually more efficient to put all of the modules in a single file ('bundle') these tools will do that too.
+Browsers can't load the CommonJS modules either, so the typical solution is to run your code through _another_ tool, called a bundler.  The most popular tool for CommonJS modules is probably [Browserify](http://browserify.org/).  Since it's usually more efficient to put all of the modules in a single file ('bundle') these tools will do that too.
 
 The bundlers are not simple.  They each have their own API for registering plugins and config file format.  Putting together a working setup can be pretty challenging, especially if you are still learning.
 
