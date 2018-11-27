@@ -4,7 +4,7 @@ date: 2018-11-14T12:28:21-05:00
 draft: false
 ---
 
-# Introduction
+## Introduction
 
 TypeScript is great for writing typesafe backends in Node.js but what about the templates?  The commonly used template engines for Node leave a lot to be desired in the type safety department.
 
@@ -36,11 +36,11 @@ And you definitely won't get an error for invalid HTML.
 
 But it turns out TypeScript already has a typechecked templating language built in already - JSX.
 
-# JSX
+## JSX
 
 [JSX](https://facebook.github.io/jsx/) is an XML like syntax that can be embedded in JavaScript.  By saving your file with a `.tsx` extension and setting the [appropriate compiler options](https://www.typescriptlang.org/docs/handbook/jsx.html) it will be typechecked and transformed by the TypeScript compiler.  It's normally used with frontend frameworks like React.  It turns out it works pretty well as a templating engine too.
 
-## How It Works
+### How It Works
 
 When you set the compiler option `jsx` to `react` the TypeScript compiler will transform JSX into function calls.  By default the function used is `React.createElement`, but that can easily be changed using the `jsxFactory` compiler option.  For example with `jsxFactory` set to `h`, this JSX:
 
@@ -68,7 +68,7 @@ const name = 'Matt';
 console.log(<div>Hello {name}</div>);
 ```
 
-## Components
+### Components
 
 To Reuse logic you can create a component.  A component is just a function that returns JSX.
 
@@ -122,7 +122,7 @@ const tpl = (
 console.log(tpl);
 ```
 
-# Conclusion
+## Conclusion
 
 I'm pretty excited about this idea and I plan to try it for my next backend Node.JS project.  There aren't very many options for building strongly typed templates (The [Lucky Framework](https://luckyframework.org) for Crystal is the only other option I can think of right now).  JSX is really powerful and vhtml seems to offer all of the functionality I would need.
 
