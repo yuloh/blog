@@ -22,6 +22,10 @@ pre {
   overflow-x: scroll;
 }
 
+a {
+  color: #357edd;
+}
+
 .tc {
   text-align: center;
 }
