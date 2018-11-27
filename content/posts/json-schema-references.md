@@ -89,8 +89,6 @@ That works, but it breaks down because JSON Schema allows circular references.  
 
 If you try to inline that reference, you are going to end up with infinite recursion.
 
-![Droste](/images/posts/json-schema-references/Droste.jpg)
-
 ## Inlining
 
 The library I was using solved this by keeping track of how many levels of recursion took place, and throwing an exception if you exceeded them (they have since fixed this in v2.0.0).  In practice this meant that you had to re-adjust the depth depending on how nested your schema was.  It would also silently pass validation for any schemas with root pointer references, which is a pointer that starts with `#`.  This meant that you couldn't validate using the JSON Meta Schema, so it was impossible to verify your schema was correct.

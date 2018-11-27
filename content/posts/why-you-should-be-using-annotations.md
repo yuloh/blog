@@ -63,9 +63,6 @@ class Article
 
 Annotations are special comments that doctrine scans and uses to generate metadata.  But a lot of developers see this and immediately reject it.
 
-<iframe src="//giphy.com/embed/5xtDarC0XyqmUhD5eDK?html5=true" width="480" height="266" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-<br>
-
 If you would like to learn more about why people hate this, you can read [this article](http://theunraveler.com/blog/2012/php-annotations-are-a-horrible-idea/).  The general idea is that annotations are just comments, and comments shouldn't affect how your code functions.
 
 # Alternatives

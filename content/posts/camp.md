@@ -12,8 +12,6 @@ Today I released [camp](https://github.com/matthew-james/camp), a simple install
 
 Nearly every other languge has a one click installer.  PHP [links you](http://php.net/manual/en/install.macosx.packages.php) to three different osx package managers with no indication as to which one is best, and another site that asks you to [curl pipe sh](http://curlpipesh.tumblr.com/) without ssl and then sudo.
 
-![package installers](/images/posts/camp/pkg-installers.png)
-
 ## The Stack
 
 I started thinking about what I would need installed to teach someone modern PHP development.
