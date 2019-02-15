@@ -58,7 +58,7 @@ Now you just need to define this function.  The original implementation is calle
 
 If you want to use components you can use [vhtml](https://github.com/developit/vhtml).  Using vhtml you can easily write functional components like you would in React, giving you a great alterative to template partials.  The rest of this guide uses vhtml since components are really useful.
 
-Both HyperScript and vhtml use define an `h` function.  You just need to import this function into your `.tsx` file, and you can write JSX.
+Both HyperScript and vhtml define a `h` function (the h stands for 'hyperscript').  Once you import this function into your `.tsx` file you can write JSX.
 
 ```typescript
 import * as h from 'vhtml';
@@ -99,7 +99,7 @@ console.log(<Hello firstName='Matt'/>);
 console.log(<Hello name={{first: 'Matt', last: 'Allan'}}/>);
 ```
 
-If the component accepts children the children will be included in the props as `children`.  children is an Array of already-serialized HTML strings.  This allows you to easily compose components, similar to how you would use partials in handlebars.
+If the component accepts children the children will be included in the props as `children`.  the children prop is an Array of already-serialized HTML strings.  This allows you to easily compose components, similar to how you would use partials in handlebars.
 
 ```typescript
 import * as h from 'vhtml';
@@ -126,6 +126,4 @@ console.log(tpl);
 
 I'm pretty excited about this idea and I plan to try it for my next backend Node.JS project.  There aren't very many options for building strongly typed templates (The [Lucky Framework](https://luckyframework.org) for Crystal is the only other option I can think of right now).  JSX is really powerful and vhtml seems to offer all of the functionality I would need.
 
-If you would like to try it yourself I put together a small sample project which you can download [here](https://github.com/yuloh/server-side-tsx-example).  If you try it let me know what you think.
-
-I put together a small example which you can view [here](https://github.com/yuloh/server-side-tsx-example).  The example uses vhtml along with functional components.
+If you would like to try it yourself I put together a small sample project which you can download [here](https://github.com/yuloh/server-side-tsx-example).  The example uses vhtml along with functional components.  If you try it let me know what you think.
