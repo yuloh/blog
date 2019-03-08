@@ -10,26 +10,30 @@ TypeScript is great for writing typesafe backends in Node.js but what about the 
 
 You won't get an error if you mess up variable name:
 
-```typescript
+```jsx
 import * as handlebars from 'handlebars';
 
 // outputs '<div>Hello </div>'
-console.log(handlebars.compile('<div>Hello {{ firstName }}</div>')({firstname: 'Matt'}));
+let tpl = handlebars.compile('<div>Hello {{ firstName }}</div>');
+console.log(tpl({firstname: 'Matt'}));
 ```
 
 ...or pass an unexpected type:
 
 
-```typescript
+```jsx
 // outputs '<div>Hello [object Object]</div>'
-console.log(handlebars.compile('<div>Hello {{ name }}</div>')({name:  {firstname: 'Matt', lastname: 'Allan'}}));
+
+let tpl = handlebars.compile('<div>Hello {{ name }}</div>');
+console.log(tpl({name:  {firstname: 'Matt', lastname: 'Allan'}}));
 ```
 
 ...or forget to pass a variable at all when it should be required:
 
-```typescript
+```jsx
 // outputs '<div>Hello </div>'
-console.log(handlebars.compile('<div>Hello {{ firstName }}</div>')({}));
+let tpl = handlebars.compile('<div>Hello {{ firstName }}</div>');
+console.log(tpl({}));
 ```
 
 And you definitely won't get an error for invalid HTML.
@@ -44,7 +48,7 @@ But it turns out TypeScript already has a typechecked templating language built 
 
 When you set the compiler option `jsx` to `react` the TypeScript compiler will transform JSX into function calls.  By default the function used is `React.createElement`, but that can easily be changed using the `jsxFactory` compiler option.  For example with `jsxFactory` set to `h`, this JSX:
 
-```typescript
+```jsx
 const tpl = <div>Hello</div>;
 ```
 
@@ -60,7 +64,7 @@ If you want to use components you can use [vhtml](https://github.com/developit/v
 
 Both HyperScript and vhtml define a `h` function (the h stands for 'hyperscript').  Once you import this function into your `.tsx` file you can write JSX.
 
-```typescript
+```jsx
 import * as h from 'vhtml';
 
 const name = 'Matt';
@@ -72,7 +76,7 @@ console.log(<div>Hello {name}</div>);
 
 To Reuse logic you can create a component.  A component is just a function that returns JSX.
 
-```typescript
+```jsx
 import * as h from 'vhtml';
 
 function Hello () {
@@ -84,7 +88,7 @@ console.log(<Hello/>);
 
 The component can accept props, which will be typechecked by the compiler.
 
-```typescript
+```jsx
 import * as h from 'vhtml';
 
 function Hello (props: {name: string}) {
@@ -101,7 +105,7 @@ console.log(<Hello name={{first: 'Matt', last: 'Allan'}}/>);
 
 If the component accepts children the children will be included in the props as `children`.  the children prop is an Array of already-serialized HTML strings.  This allows you to easily compose components, similar to how you would use partials in handlebars.
 
-```typescript
+```jsx
 import * as h from 'vhtml';
 
 function TodoList ({children}: {children?: string[]}) {
