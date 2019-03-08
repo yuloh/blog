@@ -94,6 +94,12 @@ p > code {
   color: #8f8f8f;
 }
 
+@media screen and (max-width: 540px) {
+  .posts__post__date {
+    display: none;
+  }
+}
+
 .tc {
   text-align: center;
 }
