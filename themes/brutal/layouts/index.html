@@ -1,10 +1,12 @@
 {{ partial "header.html" . }}
 <main>
   <nav>
-    <ul>
+    <ul class="posts">
       {{ range .Pages }}
-        <li>
-          <a href="{{ .Permalink }}">{{ .Title }}</a>
+        <li class="posts__post">
+          <a href="{{ .Permalink }}">
+            {{ .Title }} <span class="posts__post__date">2019/01/01</span>
+          </a>
         </li>
       {{ end }}
     </ul>
