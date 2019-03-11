@@ -5,7 +5,7 @@ date: 2019-03-08T12:00:00-05:00
 
 The next release of [Laravel Scout](https://laravel.com/docs/5.8/scout) will be able to index your models ~64x faster [^1].  You can see the pull request [here](https://github.com/laravel/scout/pull/360).
 
-This post provides some background on the change and explains why it makes such a huge difference.  The technique is generally useful - you can probably find somewhere in your own code to put it to use.
+This post provides some background on the change and explains why it makes such a huge difference.  This is a technique I've used in my own Laravel applications to speed up problematic queries.  Once you understand how it works I bet you will find a few queries in your own application to optimize.
 
 ## Background
 
