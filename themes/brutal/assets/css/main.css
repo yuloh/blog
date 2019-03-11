@@ -100,6 +100,24 @@ p > code {
   }
 }
 
+.menu {
+  margin: 0 auto;
+  max-width: 22em;
+}
+
+.menu > ul {
+}
+
+.menu > ul > li {
+  display: inline-block;
+  list-style-type: none;
+  padding-right: 1em;
+}
+
+.menu > ul > li:last-child {
+  padding-right: none;
+}
+
 .tc {
   text-align: center;
 }
