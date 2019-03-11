@@ -41,9 +41,9 @@ It turns out it's easy to page through results without using offset. All we have
 select * from `users` where `id` > :last_id order by `id` asc limit 500;
 ```
 
-With this technique the last page loads just as quickly as the first.
+With this technique the last page loads as quickly as the first.
 
-Laravel makes this effortless.  Instead of calling `chunk` call the `chunkById` method ([added in 5.2](https://github.com/laravel/framework/pull/12861)).  The query builder will add the where clause, the order by, and the limit for you.
+Laravel makes this effortless.  Instead of calling `chunk` call the `chunkById` method ([added in 5.2](https://github.com/laravel/framework/pull/12861)).  The query builder will add the where clause, the order by, and the limit.
 
 The API is exactly the same as `chunk`.  As long as you aren't using any custom order by clauses it's a 4 character change.
 
