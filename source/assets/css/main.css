@@ -1,0 +1,38 @@
+body {
+  font-family: athela,
+               georgia,
+               serif;
+  color: #111111;
+}
+
+a {
+  text-decoration: none;
+  transition: color .15s ease-in;
+  color: #357edd;
+}
+
+a:hover   {
+  transition: color .15s ease-in;
+  text-decoration: underline;
+}
+
+a:focus   {
+  transition: color .15s ease-in;
+  outline: 1px dotted currentColor;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: -apple-system, BlinkMacSystemFont,
+               'avenir next', avenir,
+               'helvetica neue', helvetica,
+               ubuntu,
+               roboto, noto,
+               'segoe ui', arial,
+               sans-serif;
+  color: rgba(0,0,0,.8);
+}
+
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
+  color: #357edd;
+  text-decoration: none;
+}

@@ -1,9 +1,0 @@
-# Site settings
-baseurl = "https://mattallan.org"
-themesDir = "./themes"
-languageCode = "en-us"
-title = "Matt Allan"
-theme = "brutal"
-pygmentsCodeFences=true
-pygmentsUseClasses=true
-sectionPagesMenu = "pages"

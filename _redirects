@@ -1,2 +1,5 @@
 # Redirect default Netlify subdomain to primary domain
 http://matt-allan.netlify.com/* http://mattallan.org/:splat 301!
+
+# jekyll posts
+/posts/:year/:slug /posts/:slug
