@@ -6,4 +6,10 @@ title = "Matt Allan"
 theme = "brutal"
 pygmentsCodeFences=true
 pygmentsUseClasses=true
-sectionPagesMenu = "pages"
+
+[menu]
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    title = "about"
+    url = "/about/"

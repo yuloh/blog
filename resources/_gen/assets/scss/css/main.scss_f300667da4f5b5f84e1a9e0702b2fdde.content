@@ -1,0 +1,109 @@
+body {
+  background: #fff;
+  color: #000;
+  font-family: Merriweather, "Book Antiqua", Georgia, "Century Schoolbook", serif;
+  line-height: 1.5;
+  font-size: 1rem; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Lato", sans-serif;
+  font-weight: 700; }
+
+a {
+  color: #000; }
+
+pre, p > code {
+  border: 1px solid #d2ddee;
+  border-radius: 2px;
+  background: #f7f9fc; }
+
+pre {
+  padding: 1rem;
+  overflow-x: auto; }
+
+p > code {
+  border-radius: 2px;
+  padding: 0.25rem; }
+
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+
+.navbar__brand {
+  display: inline-flex;
+  align-items: center; }
+
+.navbar__brand img {
+  height: 3rem;
+  padding: 1rem; }
+
+.navbar__brand a {
+  text-decoration: none; }
+
+.navbar__nav {
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center; }
+
+.navbar__nav ul {
+  display: flex;
+  flex-wrap: wrap; }
+
+.navbar__nav a {
+  text-decoration: none; }
+
+.navbar__nav li {
+  padding-right: 1rem;
+  list-style-type: none; }
+
+.content {
+  margin: auto;
+  max-width: 64rem;
+  min-height: 16rem; }
+
+.posts {
+  padding-top: 2rem;
+  padding-bottom: 2rem; }
+
+.posts__post {
+  border-top: 1px solid #2C2C31;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  list-style-type: none;
+  margin-bottom: 0; }
+
+.posts__post > a {
+  text-decoration: none;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  line-height: 1.5; }
+
+.posts__post > a:hover {
+  text-decoration: underline; }
+
+.posts__post__date {
+  float: right;
+  display: none; }
+
+.footer {
+  text-align: center; }
+
+.social-icon {
+  color: #000;
+  height: 2rem;
+  width: 2rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  display: inline-block; }
+
+.tc {
+  text-align: center; }
+
+@media screen and (min-width: 30em) {
+  .navbar__nav {
+    justify-content: flex-end;
+    padding-right: 1rem; }
+  .posts__post__date {
+    display: initial; } }

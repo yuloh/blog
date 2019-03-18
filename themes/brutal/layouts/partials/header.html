@@ -4,12 +4,34 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ .Title }}</title>
-    {{ $main := resources.Get "css/main.css" }}
+    {{ $normalize := resources.Get "css/normalize.css" }}
+    {{ $main := resources.Get "css/main.scss" | resources.ToCSS }}
     {{ $syntax := resources.Get "css/syntax.css" }}
-    {{ $style := slice $main $syntax | resources.Concat "css/bundle.css" | toCSS | minify | fingerprint }}
+    {{ $style := slice $normalize $main $syntax | resources.Concat "css/bundle.css" | minify | fingerprint }}
     <link rel="stylesheet" href="{{ $style.Permalink }}">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     {{ range .AlternativeOutputFormats -}}
       {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
     {{ end -}}
   </head>
   <body>
+  <header class="navbar" role="navigation" aria-label="main navigation">
+     <div class="navbar__brand">
+        <a href="/" title="{{ $.Site.Title | safeHTML }}">
+          <img src="{{ "img/logo.png" | absURL }}"/>
+        </a>
+        <h1>
+          <a href="/" title="{{ $.Site.Title | safeHTML }}">
+            Matt Allan
+          </a>
+        </h1>
+     </div>
+     <nav class="navbar__nav">
+      <ul>
+        {{ $currentPage := . }}
+        {{ range .Site.Menus.main }}
+          <li><a class="" href="{{ .URL }}" title="{{ .Title }}">{{ .Name }}</a></li>
+        {{ end }}
+      </ul>
+     </nav>
+  </header>

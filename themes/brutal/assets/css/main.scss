@@ -1,0 +1,171 @@
+// font families
+$serif: Merriweather,'Book Antiqua',Georgia,'Century Schoolbook', serif;
+$sans-serif: 'Lato', sans-serif;
+
+// Typography
+$font-size-base: 1rem;
+$line-height-base: 1.5;
+
+// colors
+$white: #fff;
+$black: #000;
+
+// breakpoints
+$breakpoint-md: 30em;
+$breakpoint-lg: 60em;
+
+// spacing
+$spacing-none: 0;
+$spacing-extra-small: .25rem;
+$spacing-small: .5rem;
+$spacing-medium: 1rem;
+$spacing-large: 2rem;
+$spacing-extra-large: 4rem;
+$spacing-extra-extra-large: 8rem;
+$spacing-extra-extra-extra-large: 16rem;
+
+body {
+  background: $white;
+  color: $black;
+  font-family: $serif;
+  line-height: $line-height-base;
+  font-size: $font-size-base;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $sans-serif;
+  font-weight: 700;
+}
+
+a {
+  color: $black;
+}
+
+pre, p > code {
+  border: 1px solid #d2ddee;
+  border-radius: 2px;
+  background: #f7f9fc;
+}
+
+pre {
+  padding: $spacing-medium;
+  overflow-x: auto;
+}
+
+p > code {
+  border-radius: 2px;
+  padding: $spacing-extra-small;
+}
+
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.navbar__brand {
+  display: inline-flex;
+  align-items: center;
+}
+
+.navbar__brand img {
+  height: 3rem;
+  padding: $spacing-medium;
+}
+
+
+.navbar__brand a {
+  text-decoration: none;
+}
+
+.navbar__nav {
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+}
+
+.navbar__nav ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.navbar__nav a {
+  text-decoration: none;
+}
+
+.navbar__nav li {
+  padding-right: $spacing-medium;
+  list-style-type: none;
+}
+
+.content {
+  margin: auto;
+  max-width: 64rem;
+  min-height: 16rem;
+}
+
+.posts {
+  padding-top: $spacing-large;
+  padding-bottom: $spacing-large;
+}
+
+.posts__post {
+  border-top: 1px solid #2C2C31;
+  padding-top: $spacing-large;
+  padding-bottom: $spacing-large;
+  list-style-type: none;
+  margin-bottom: $spacing-none;
+}
+
+.posts__post > a {
+  text-decoration: none;
+  font-family: $sans-serif;
+  font-weight: 400;
+  line-height: $line-height-base;
+}
+
+.posts__post > a:hover {
+  text-decoration: underline;
+}
+
+.posts__post__date {
+  float: right;
+  display: none;
+}
+
+.footer {
+  text-align: center;
+}
+
+.social-icon {
+  color: $black;
+  height: 2rem;
+  width: 2rem;
+  padding-right: $spacing-small;
+  padding-left: $spacing-small;
+  display: inline-block;
+}
+
+.tc {
+  text-align: center;
+}
+
+// not small
+@media screen and (min-width: $breakpoint-md) {
+  .navbar__nav {
+    justify-content: flex-end;
+    padding-right: $spacing-medium;
+  }
+  .posts__post__date {
+    display: initial;
+  }
+}
+// medium
+@media screen and (min-width: $breakpoint-md) and (max-width: $breakpoint-lg) {
+
+}
+// large
+@media screen and (min-width: $breakpoint-lg) {
+
+}
