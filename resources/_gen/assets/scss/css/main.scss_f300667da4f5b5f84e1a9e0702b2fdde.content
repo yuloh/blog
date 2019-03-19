@@ -61,7 +61,9 @@ p > code {
 .content {
   margin: auto;
   max-width: 64rem;
-  min-height: 16rem; }
+  min-height: 16rem;
+  padding-left: 1rem;
+  padding-right: 1rem; }
 
 .posts {
   padding-top: 2rem;

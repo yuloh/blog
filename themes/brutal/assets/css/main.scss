@@ -103,6 +103,8 @@ p > code {
   margin: auto;
   max-width: 64rem;
   min-height: 16rem;
+  padding-left: $spacing-medium;
+  padding-right: $spacing-medium;
 }
 
 .posts {
