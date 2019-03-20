@@ -1,2 +1,5 @@
 # Redirect default Netlify subdomain to primary domain
 http://matt-allan.netlify.com/* http://mattallan.org/:splat 301!
+
+# Redirect domain alias to primary domain
+https://mattallan.org/* https://mattallan.me/:splat 301!
