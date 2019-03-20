@@ -1,5 +1,5 @@
 # Site settings
-baseurl = "https://mattallan.org"
+baseurl = "https://mattallan.me"
 themesDir = "./themes"
 languageCode = "en-us"
 title = "Matt Allan"
