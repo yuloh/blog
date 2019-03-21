@@ -10,10 +10,6 @@ $line-height-base: 1.5;
 $white: #fff;
 $black: #000;
 
-// breakpoints
-$breakpoint-md: 30em;
-$breakpoint-lg: 60em;
-
 // spacing
 $spacing-none: 0;
 $spacing-extra-small: .25rem;
@@ -64,37 +60,37 @@ p > code {
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.navbar__brand {
+.navbar-brand {
   display: inline-flex;
   align-items: center;
 }
 
-.navbar__brand img {
+.navbar-brand img {
   height: 3rem;
   padding: $spacing-medium;
 }
 
 
-.navbar__brand a {
+.navbar-brand a {
   text-decoration: none;
 }
 
-.navbar__nav {
+.navbar-nav {
   display: flex;
   flex: 1 1 auto;
   justify-content: center;
 }
 
-.navbar__nav ul {
+.navbar-nav ul {
   display: flex;
   flex-wrap: wrap;
 }
 
-.navbar__nav a {
+.navbar-nav a {
   text-decoration: none;
 }
 
-.navbar__nav li {
+.navbar-nav li {
   padding-right: $spacing-medium;
   list-style-type: none;
 }
@@ -112,7 +108,7 @@ p > code {
   padding-bottom: $spacing-large;
 }
 
-.posts__post {
+.posts-post {
   border-top: 1px solid #2C2C31;
   padding-top: $spacing-large;
   padding-bottom: $spacing-large;
@@ -120,27 +116,26 @@ p > code {
   margin-bottom: $spacing-none;
 }
 
-.posts__post > a {
+.posts-post > a {
   text-decoration: none;
   font-family: $sans-serif;
   font-weight: 400;
   line-height: $line-height-base;
 }
 
-.posts__post > a:hover {
+.posts-post > a:hover {
   text-decoration: underline;
 }
 
-.posts__post__date {
+.posts-postTime {
   float: right;
-  display: none;
 }
 
 .footer {
   text-align: center;
 }
 
-.social-icon {
+.socialIcon {
   color: $black;
   height: 2rem;
   width: 2rem;
@@ -156,14 +151,14 @@ p > code {
   padding: $spacing-large;
 }
 
-.pagination__link {
+.pagination-link {
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   padding: $spacing-medium;
 }
 
-.pagination__icon {
+.pagination-icon {
   width: $spacing-medium;
 }
 
@@ -171,21 +166,13 @@ p > code {
   text-align: center;
 }
 
-// not small
-@media screen and (min-width: $breakpoint-md) {
-  .navbar__nav {
+@media screen and (min-width: 30em) {
+  .navbar-nav {
     justify-content: flex-end;
     padding-right: $spacing-medium;
   }
-  .posts__post__date {
+  .posts-postTime {
     display: initial;
+    float: right;
   }
-}
-// medium
-@media screen and (min-width: $breakpoint-md) and (max-width: $breakpoint-lg) {
-
-}
-// large
-@media screen and (min-width: $breakpoint-lg) {
-
 }

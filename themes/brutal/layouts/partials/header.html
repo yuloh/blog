@@ -16,7 +16,7 @@
   </head>
   <body>
   <header class="navbar" role="navigation" aria-label="main navigation">
-     <div class="navbar__brand">
+     <div class="navbar-brand">
         <a href="/" title="{{ $.Site.Title | safeHTML }}">
           <img src="{{ "img/logo.png" | absURL }}"/>
         </a>
@@ -26,7 +26,7 @@
           </a>
         </h1>
      </div>
-     <nav class="navbar__nav">
+     <nav class="navbar-nav">
       <ul>
         {{ $currentPage := . }}
         {{ range .Site.Menus.main }}

@@ -3,9 +3,9 @@
   <nav>
     <ul class="posts">
       {{ range .Paginator.Pages }}
-        <li class="posts__post">
+        <li class="posts-post">
           <a href="{{ .Permalink }}">
-            {{ .Title }} <span class="posts__post__date">{{ .Date.Format "January 2, 2006" }}</span>
+            {{ .Title }} <time class="posts-postTime" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
           </a>
         </li>
       {{ end }}
@@ -13,8 +13,8 @@
   </nav>
   <div class="pagination">
     {{ if .Paginator.HasPrev }}
-      <a class="pagination__link" href="{{.Paginator.Prev.URL}}">
-          <svg class="pagination__icon" data-icon="chevronLeft" viewBox="0 0 32 32" style="fill:currentcolor">
+      <a class="pagination-link" href="{{.Paginator.Prev.URL}}">
+          <svg class="pagination-icon" data-icon="chevronLeft" viewBox="0 0 32 32" style="fill:currentcolor">
             <title>chevronLeft icon</title>
             <path d="M20 1 L24 5 L14 16 L24 27 L20 31 L6 16 z"></path>
           </svg>
@@ -22,9 +22,9 @@
       </a>
     {{ end }}
     {{ if .Paginator.HasNext }}
-      <a class="pagination__link" href="{{.Paginator.Next.URL}}">
+      <a class="pagination-link" href="{{.Paginator.Next.URL}}">
         <span>Next</span>
-        <svg class="pagination__icon" data-icon="chevronRight" viewBox="0 0 32 32" style="fill:currentcolor">
+        <svg class="pagination-icon" data-icon="chevronRight" viewBox="0 0 32 32" style="fill:currentcolor">
           <title>chevronRight icon</title>
           <path d="M12 1 L26 16 L12 31 L8 27 L18 16 L8 5 z"></path>
         </svg>
