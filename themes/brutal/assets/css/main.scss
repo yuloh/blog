@@ -149,6 +149,24 @@ p > code {
   display: inline-block;
 }
 
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-large;
+}
+
+.pagination__link {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  padding: $spacing-medium;
+}
+
+.pagination__icon {
+  width: $spacing-medium;
+}
+
 .tc {
   text-align: center;
 }
