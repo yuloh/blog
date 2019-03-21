@@ -31,30 +31,30 @@ p > code {
   align-items: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
 
-.navbar__brand {
+.navbar-brand {
   display: inline-flex;
   align-items: center; }
 
-.navbar__brand img {
+.navbar-brand img {
   height: 3rem;
   padding: 1rem; }
 
-.navbar__brand a {
+.navbar-brand a {
   text-decoration: none; }
 
-.navbar__nav {
+.navbar-nav {
   display: flex;
   flex: 1 1 auto;
   justify-content: center; }
 
-.navbar__nav ul {
+.navbar-nav ul {
   display: flex;
   flex-wrap: wrap; }
 
-.navbar__nav a {
+.navbar-nav a {
   text-decoration: none; }
 
-.navbar__nav li {
+.navbar-nav li {
   padding-right: 1rem;
   list-style-type: none; }
 
@@ -69,30 +69,29 @@ p > code {
   padding-top: 2rem;
   padding-bottom: 2rem; }
 
-.posts__post {
+.posts-post {
   border-top: 1px solid #2C2C31;
   padding-top: 2rem;
   padding-bottom: 2rem;
   list-style-type: none;
   margin-bottom: 0; }
 
-.posts__post > a {
+.posts-post > a {
   text-decoration: none;
   font-family: "Lato", sans-serif;
   font-weight: 400;
   line-height: 1.5; }
 
-.posts__post > a:hover {
+.posts-post > a:hover {
   text-decoration: underline; }
 
-.posts__post__date {
-  float: right;
-  display: none; }
+.posts-postTime {
+  float: right; }
 
 .footer {
   text-align: center; }
 
-.social-icon {
+.socialIcon {
   color: #000;
   height: 2rem;
   width: 2rem;
@@ -100,12 +99,28 @@ p > code {
   padding-left: 0.5rem;
   display: inline-block; }
 
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem; }
+
+.pagination-link {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem; }
+
+.pagination-icon {
+  width: 1rem; }
+
 .tc {
   text-align: center; }
 
 @media screen and (min-width: 30em) {
-  .navbar__nav {
+  .navbar-nav {
     justify-content: flex-end;
     padding-right: 1rem; }
-  .posts__post__date {
-    display: initial; } }
+  .posts-postTime {
+    display: initial;
+    float: right; } }
