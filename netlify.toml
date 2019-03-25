@@ -1,0 +1,14 @@
+[[redirects]]
+  from = "https://matt-allan.netlify.com/*"
+  to = "https://mattallan.me/:splat"
+  force = true
+
+[[redirects]]
+  from = "https://mattallan.org/*"
+  to = "https://mattallan.me/:splat"
+  force = true
+
+[[redirects]]
+  from = "https://www.mattallan.org/*"
+  to = "https://mattallan.me/:splat"
+  force = true

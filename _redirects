@@ -1,6 +1,0 @@
-# Redirect default Netlify subdomain to primary domain
-https://matt-allan.netlify.com/* https://mattallan.me/:splat 301!
-
-# Redirect domain aliases to primary domain
-https://mattallan.org/* https://mattallan.me/:splat 301!
-https://www.mattallan.org/* https://mattallan.me/:splat 301!
