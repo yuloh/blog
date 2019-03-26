@@ -269,7 +269,7 @@ Environment variables are passed to child processes, threads, and forks.
 
 It's common for error handlers to record `$_SERVER`.  Both [Sentry](https://github.com/getsentry/sentry-php/pull/326) and [Airbrake](https://github.com/airbrake/phpbrake/issues/51) did this.
 
-# getenv Bugs
+# getenv Doesn't Always Work
 
 While researching this article I ran into some `getenv` bugs I hadn't seen before.
 
