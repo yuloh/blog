@@ -15,7 +15,7 @@ Let's break down what environment variables are, how they work, and how to corre
 
 ## What's an Environment Variable?
 
-Since the 1980's every popular operating system has supported variables, just like a programming language.  When a process starts it inherits the variables from the parent process.  The process uses these variables to discover things about the environment it's running in, like the preferred place to save temporary files or the location of the user's home directory.
+Every popular operating system since the 1980's has supported variables, just like a programming language.  When a process starts it inherits the variables from the parent process.  The process uses these variables to discover things about the environment it's running in, like the preferred place to save temporary files or the location of the user's home directory.
 
 If you are using a Unix operating system like MacOS or Linux you can open up a terminal and see the value of the `$HOME` environment variable like this:
 
@@ -85,7 +85,7 @@ env[DB_NAME] = $DB_NAME
 
 The second option is to pass environment variables from the webserver.  You can configure this in Caddy using the [`env`](https://caddyserver.com/docs/fastcgi) parameter, in NGINX using [`fastcgi_param`](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_param), and in apache using [`PassEnv` or `SetEnv`](https://httpd.apache.org/docs/2.4/mod/mod_env.html).
 
-**Confirm PHP-FPM is not accessible from the internet before doing this!** Otherwise anyone can inject environment variables.  Check the [listen.allowed_clients](https://secure.php.net/manual/en/install.fpm.configuration.php#listen-allowed-clients) setting.
+**Confirm PHP-FPM is not accessible from the internet!** Otherwise anyone can inject environment variables using the same mechanism the web server uses to pass environment variables to your application.  Check the [listen.allowed_clients](https://secure.php.net/manual/en/install.fpm.configuration.php#listen-allowed-clients) setting.
 
 ### .env
 
