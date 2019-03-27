@@ -65,6 +65,7 @@ Another useful trick for Unix systems is to use the `export` command.  Once you 
 ```bash
 » export APP_ENV=local
 » php -r 'var_dump(getenv("APP_ENV"));'
+string(5) "local"
 ```
 
 There are a lot of other options for [permanently setting environment variables](https://unix.stackexchange.com/questions/117467/how-to-permanently-set-environmental-variables) but they aren't really meant for secrets and typically require storing the environment variables in plain text.
