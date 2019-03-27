@@ -5,7 +5,7 @@ date: 2019-03-26T12:00:00-05:00
 
 ## Introduction
 
-The majority of modern PHP frameworks use [environment variables](https://en.wikipedia.org/wiki/Environment_variable) to store security credentials and configuration that changes from one machine to the next.
+Laravel, Symfony, and other modern PHP frameworks use [environment variables](https://en.wikipedia.org/wiki/Environment_variable) to store security credentials and configuration that changes from one machine to the next.
 
 The latest Laravel release made a [small change](https://github.com/laravel/framework/pull/27462) to the way environment variables are loaded.  This change ended up breaking [third party libraries](https://github.com/laravel/framework/issues/27949) and [Laravel itself](https://github.com/laravel/framework/issues/27828).
 
