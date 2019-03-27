@@ -7,7 +7,7 @@ date: 2019-03-26T12:00:00-05:00
 
 Laravel, Symfony, and other modern PHP frameworks use [environment variables](https://en.wikipedia.org/wiki/Environment_variable) to store security credentials and configuration that changes from one machine to the next.
 
-The latest Laravel release made a [small change](https://github.com/laravel/framework/pull/27462) to the way environment variables are loaded.  This change ended up breaking [third party libraries](https://github.com/laravel/framework/issues/27949) and [Laravel itself](https://github.com/laravel/framework/issues/27828).
+The latest Laravel release made a [small change](https://github.com/laravel/framework/pull/27462) to the way environment variables are loaded.  This change ended up breaking [third-party libraries](https://github.com/laravel/framework/issues/27949) and [Laravel itself](https://github.com/laravel/framework/issues/27828).
 
 The ensuing discussion made it clear that many developers (including myself) don't realize how complex environment variables in PHP actually are. There are as many ways to read them as there are to write them and none of the options are foolproof.
 
@@ -15,7 +15,7 @@ Let's break down what environment variables are, how they work, and how to corre
 
 ## What's an Environment Variable?
 
-Every popular operating system since the 1980's has supported variables, just like a programming language.  When a process starts it inherits the variables from the parent process.  The process uses these variables to discover things about the environment it's running in, like the preferred place to save temporary files or the location of the user's home directory.
+Every popular operating system since the 1980s has supported variables, just like a programming language.  When a process starts it inherits the variables from the parent process.  The process uses these variables to discover things about the environment it's running in, like the preferred place to save temporary files or the location of the user's home directory.
 
 If you are using a Unix operating system like MacOS or Linux you can open up a terminal and see the value of the `$HOME` environment variable like this:
 
@@ -34,7 +34,7 @@ Normally environment variables are written in uppercase with underscores separat
 
 ## Using Environment Variables For Application Config
 
-The [Twelve Factor App Methodology](https://www.12factor.net) popularized the idea of using environment variables to store configuration for software.  Since then it's become the de facto standard, with first class support from web frameworks, cloud providers, and anything else you use to build software.
+The [Twelve-Factor App Methodology](https://www.12factor.net) popularized the idea of using environment variables to store configuration for software.  Since then it's become the de facto standard, with first class support from web frameworks, cloud providers, and anything else you use to build software.
 
 There are some [major downsides](http://movingfast.io/articles/environment-variables-considered-harmful/), so please do your research before adopting them if you haven't already.  If you are already using them read on to learn how to use them safely.
 
@@ -60,7 +60,7 @@ string(5) "local"
 
 It won't persist, so you need to add it every time you run the command.  This quickly gets annoying as you add more environment variables.  You don't really want to use this technique in production but it's handy for quickly testing something.
 
-Another useful trick for for unix systems is to use the `export` command.  Once you export an environment variable it's available in all subsequent commands until you exit the shell.
+Another useful trick for Unix systems is to use the `export` command.  Once you export an environment variable it's available in all subsequent commands until you exit the shell.
 
 ```bash
 » export APP_ENV=local
@@ -71,9 +71,9 @@ There are a lot of other options for [permanently setting environment variables]
 
 ### Web
 
-When our web server handles a request we don't launch the process ourselves.  Instead [PHP-FPM](https://php-fpm.org) spawns the process.
+When our web server handles a request we don't launch the process ourselves.  Instead, [PHP-FPM](https://php-fpm.org) spawns the process.
 
-The first option is to pass environment variables [from PHP-FPM](https://secure.php.net/manual/en/install.fpm.configuration.php).  By default PHP-FPM clears the existing environment variables before starting the PHP process.  You can disable this with the `clear_env` configuration directive.  After the environment is cleaned you can add your own variables with the `env[name] = value` syntax:
+The first option is to pass environment variables [from PHP-FPM](https://secure.php.net/manual/en/install.fpm.configuration.php).  By default, PHP-FPM clears the existing environment variables before starting the PHP process.  You can disable this with the `clear_env` configuration directive.  After the environment is cleaned you can add your own variables with the `env[name] = value` syntax:
 
 ```ini
 ; somewhere in the pool configuration file (www.conf by default)
@@ -83,13 +83,13 @@ env[APP_ENV] = production
 env[DB_NAME] = $DB_NAME
 ```
 
-The second option is to pass environment variables from the webserver.  You can configure this in Caddy using the [`env`](https://caddyserver.com/docs/fastcgi) parameter, in NGINX using [`fastcgi_param`](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_param), and in apache using [`PassEnv` or `SetEnv`](https://httpd.apache.org/docs/2.4/mod/mod_env.html).
+The second option is to pass environment variables from the web server.  You can configure this in Caddy using the [`env`](https://caddyserver.com/docs/fastcgi) parameter, in NGINX using [`fastcgi_param`](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_param), and in apache using [`PassEnv` or `SetEnv`](https://httpd.apache.org/docs/2.4/mod/mod_env.html).
 
-**Confirm PHP-FPM is not accessible from the internet!** Otherwise anyone can inject environment variables using the same mechanism the web server uses to pass environment variables to your application.  Check the [listen.allowed_clients](https://secure.php.net/manual/en/install.fpm.configuration.php#listen-allowed-clients) setting.
+**Confirm PHP-FPM is not accessible from the internet!** Otherwise, anyone can inject environment variables using the same mechanism the web server uses to pass environment variables to your application.  Check the [listen.allowed_clients](https://secure.php.net/manual/en/install.fpm.configuration.php#listen-allowed-clients) setting.
 
 ### .env
 
-Because setting environment variables is cumbersome the Ruby community came up with the `.env` file convention.  You declare you environment variables in a file called `.env` at the root of your project, and a library loads all of the environment variables into your application when it boots.
+Because setting environment variables is cumbersome the Ruby community came up with the `.env` file convention.  You declare your environment variables in a file called `.env` at the root of your project, and a library loads all of the environment variables into your application when it boots.
 
 Originally .env files [weren't meant for production](https://github.com/bkeepers/dotenv#can-i-use-dotenv-in-production).  It's not very secure to leave all of your secrets in plain text and parsing the file is slow.  However, it seems to be fairly common.
 
@@ -120,7 +120,7 @@ bool(false)
 
 There is also an `$_ENV` superglobal.  Just like `$_SERVER` it can be disabled by removing `E` from the `variables_order` directive.  The default value for [development](https://github.com/php/php-src/blob/master/php.ini-development#L627) and [production](https://github.com/php/php-src/blob/b167dbe3ae9201e725d9f02817849e65bbb50c02/php.ini-production#L627) is `GPCS`, meaning `$_ENV` is most likely empty on your server.
 
-So what's the difference between `$_ENV` and `$_SERVER`?  In CGI mode, [nothing](https://github.com/php/php-src/blob/6d24b92315697b4da46df3bdcccef1c29c3d0fa4/sapi/cgi/cgi_main.c#L699).  When using the built in webserver only `$_ENV` contains environment variables and only `$_SERVER` contains server variables such as headers, paths, and script locations.  When running a CLI script both `$_SERVER` and `$_ENV` contain environment variables, but `$_SERVER` also contains request information and CLI arguments.
+So what's the difference between `$_ENV` and `$_SERVER`?  In CGI mode, [nothing](https://github.com/php/php-src/blob/6d24b92315697b4da46df3bdcccef1c29c3d0fa4/sapi/cgi/cgi_main.c#L699).  When using the built-in web server only `$_ENV` contains environment variables and only `$_SERVER` contains server variables such as headers, paths, and script locations.  When running a CLI script both `$_SERVER` and `$_ENV` contain environment variables, but `$_SERVER` also contains request information and CLI arguments.
 
 Ultimately it's up to the [SAPI](https://stackoverflow.com/questions/9948008/what-is-sapi-and-when-would-you-use-it) to populate each superglobal.
 
@@ -128,7 +128,7 @@ Ultimately it's up to the [SAPI](https://stackoverflow.com/questions/9948008/wha
 
 ### getenv
 
-The `getenv` function serves a similar purpose as the `$_ENV` superglobal.  However unlike the superglobals, `getenv` cannot be disabled with the `variables_order` directive.
+The `getenv` function serves a similar purpose as the `$_ENV` superglobal.  However, unlike the superglobals, `getenv` cannot be disabled with the `variables_order` directive.
 
 ```bash
 » APP_ENV=local php -d variables_order= -r 'var_dump(getenv("APP_ENV"));'
@@ -155,7 +155,7 @@ PHP_FUNCTION(getenv)
 }
 ```
 
-First we call `sapi_getenv` if the `local_only` parameter is false.  This function is a hook for the SAPI to load variables that don't exist in the normal environment.  It's the reason `getenv` can return HTTP headers.
+First, we call `sapi_getenv` if the `local_only` parameter is false.  This function is a hook for the SAPI to load variables that don't exist in the normal environment.  It's the reason `getenv` can return HTTP headers.
 
 ```c
 PHP_FUNCTION(getenv)
@@ -176,7 +176,7 @@ Next we call `getenv` the c function (on Unix; Windows calls `GetEnvironmentVari
 
 # Thread Safety
 
-The c function `getenv` is not required to be thread safe.  If you call `getenv` while another thread is calling `putenv` it can cause a segmentation fault.
+The c function `getenv` is not required to be thread-safe.  If you call `getenv` while another thread is calling `putenv` it can cause a segmentation fault.
 
 This is easy to illustrate with the following code.  You will need PHP compiled with `zts` and the `pthreads` extension enabled to run this.
 
@@ -210,11 +210,11 @@ This [excellent article](https://rachelbythebay.com/w/2017/01/30/env/) explains 
 
 How do we avoid the segmentation fault?  Some developers have begun suggesting that you use `$_SERVER` or `$_ENV` instead of `getenv` to read environment variables.  This certainly avoids the problem but it's not as easy as you might think.
 
-As mentioned above, if you don't control the server you can't guarantee `$_SERVER` and `$_ENV` will be enabled.  `$_ENV` is disabled by default.  It's unlikely that `$_SERVER` is disabled but if you use `$_SERVER` your app won't work with PHP's built in web server.
+As mentioned above, if you don't control the server you can't guarantee `$_SERVER` and `$_ENV` will be enabled.  `$_ENV` is disabled by default.  It's unlikely that `$_SERVER` is disabled but if you use `$_SERVER` your app won't work with PHP's built-in web server.
 
 Secondly, it's very difficult to guarantee that all the C libraries you depend on will avoid `getenv`.  For example, the `finfo_open` calls `getenv`  if you don't specify the `$magic_file`.  Even `$_SERVER` and `$_ENV` call `getenv` [when they are initialized](https://github.com/php/php-src/blob/2fd930d839c65c570bd37e5a964332fd85024ac8/main/php_variables.c#L799).  You would need to audit all of libc, PHP, every PHP library, and every extension to guarantee `getenv` wasn't being called.
 
-Thirdly, if you are using pthreads the super globals are empty in the worker thread.  The only way to access the main thread's environment variables is to call `getenv`.
+Thirdly, if you are using pthreads the superglobals are empty in the worker thread.  The only way to access the main thread's environment variables is to call `getenv`.
 
 A much simpler solution is to avoid calling `putenv` in worker threads.  If you are using `putenv` to populate environment variables you only need to do that once.  Each worker thread will inherit the environment variables of the parent thread, so you don't need to populate them again.  Get the bootstrapping out of the way before you create a thread and you won't have any issues.
 
@@ -234,22 +234,22 @@ USER=matt
 APP_ENV=local
 ```
 
-This can be a security issue if you use environment variables for secrets and spawn untrusted sub processes.
+This can be a security issue if you use environment variables for secrets and spawn untrusted subprocesses.
 
 As mentioned above, Adding a variable to `$_ENV` or `$_SERVER` does not add it to the actual environment.  Only environment variables returned from `getenv` will be passed to the child process.  Any variable added with `putenv` will be passed to the  child process because `putenv` modifies the environment.
 
-`proc_open` allows you to specify the environment variables that should be passed to the sub process.  You can use `proc_open` for situations where you do not want to pass your application secrets to a sub process.
+`proc_open` allows you to specify the environment variables that should be passed to the subprocess.  You can use `proc_open` for situations where you do not want to pass your application secrets to a subprocess.
 
 The [Symfony process component](https://symfony.com/doc/current/components/process.html) _does_ [pass `$_SERVER` and `$_ENV` to the child process by default](https://github.com/symfony/process/blob/e9f208633ac7ef167801cf4da916e07a6149fa33/Process.php#L1634).  To prevent that you can [explicitly set the environment variables](https://symfony.com/doc/current/components/process.html#setting-environment-variables-for-processes).
 
 
 # Watch Out For HTTP Headers
 
-I alluded to this above, but it's important enough to merit it's own section.  **Every method of accessing environment variables can return HTTP headers, including `getenv`.**
+I alluded to this above, but it's important enough to merit its own section.  **Every method of accessing environment variables can return HTTP headers, including `getenv`.**
 
 When a header is included with the environment in a CGI application it's prefixed with `HTTP_`.  Since the ["httpoxy" vulnerability](https://httpoxy.org) was announced PHP won't let the `Proxy` header override `HTTP_PROXY`, but any other environment variable starting with `HTTP_` (i.e. `HTTP_PROXIES`) is still affected.  In summary, never use environment variables that start with `HTTP_`.
 
-`getenv` allows you to pass a second parameter, [`local_only`](https://www.php.net/manual/en/function.getenv.php).  If `true` [the SAPI will not be checked](https://github.com/php/php-src/blob/d49371fbd489b6767acf09afa7903e0a0558b5b4/ext/standard/basic_functions.c#L4082).  if `local_only` is true HTTP headers, variables set in fpm.conf, and variables set in the webserver configuration will be excluded.  It isn't possible to use `local_only` when returning all environment variables - `getenv(null, true)` will return `false`.
+`getenv` allows you to pass a second parameter, [`local_only`](https://www.php.net/manual/en/function.getenv.php).  If `true` [the SAPI will not be checked](https://github.com/php/php-src/blob/d49371fbd489b6767acf09afa7903e0a0558b5b4/ext/standard/basic_functions.c#L4082).  if `local_only` is true HTTP headers, variables set in fpm.conf, and variables set in the web server configuration will be excluded.  It isn't possible to use `local_only` when returning all environment variables - `getenv(null, true)` will return `false`.
 
 # Keep Secrets Secret
 
