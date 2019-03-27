@@ -250,7 +250,7 @@ I alluded to this above, but it's important enough to merit its own section.  **
 
 When a header is included with the environment in a CGI application it's prefixed with `HTTP_`.  Since the ["httpoxy" vulnerability](https://httpoxy.org) was announced PHP won't let the `Proxy` header override `HTTP_PROXY`, but any other environment variable starting with `HTTP_` (i.e. `HTTP_PROXIES`) is still affected.  In summary, never use environment variables that start with `HTTP_`.
 
-`getenv` allows you to pass a second parameter, [`local_only`](https://www.php.net/manual/en/function.getenv.php).  If `true` [the SAPI will not be checked](https://github.com/php/php-src/blob/d49371fbd489b6767acf09afa7903e0a0558b5b4/ext/standard/basic_functions.c#L4082).  if `local_only` is true HTTP headers, variables set in fpm.conf, and variables set in the web server configuration will be excluded.  It isn't possible to use `local_only` when returning all environment variables - `getenv(null, true)` will return `false`.
+`getenv` allows you to pass a second parameter, [`local_only`](https://www.php.net/manual/en/function.getenv.php).  If true [the SAPI will not be checked](https://github.com/php/php-src/blob/d49371fbd489b6767acf09afa7903e0a0558b5b4/ext/standard/basic_functions.c#L4082).  if `local_only` is true HTTP headers, variables set in fpm.conf, and variables set in the web server configuration will be excluded.  It isn't possible to use `local_only` when returning all environment variables - `getenv(null, true)` will return false.
 
 # Keep Secrets Secret
 
