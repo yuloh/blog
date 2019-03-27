@@ -200,7 +200,7 @@ while (true) {
 }
 ```
 
-If you run this from the command line you should see a segfault after about 30 seconds.
+If you run this from the command line you should see a segfault within 30 seconds.
 
 ```bash
 » php env_crash.php
