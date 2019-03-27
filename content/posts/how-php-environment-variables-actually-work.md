@@ -26,7 +26,7 @@ If you are using a Unix operating system like MacOS or Linux you can open up a t
 
 If you are using Windows you can open Powershell and type this instead:
 
-```
+```PowerShell
 Write-Output $env:HOMEPATH
 ```
 
