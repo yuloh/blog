@@ -35,9 +35,11 @@ p > code {
   display: inline-flex;
   align-items: center; }
 
-.navbar-brand img {
-  height: 3rem;
-  padding: 1rem; }
+.navbar-brand svg {
+  height: 5rem;
+  padding: 1rem;
+  stroke: #000;
+  stroke-width: 0.5; }
 
 .navbar-brand a {
   text-decoration: none; }

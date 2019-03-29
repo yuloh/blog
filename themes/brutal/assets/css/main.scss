@@ -65,9 +65,11 @@ p > code {
   align-items: center;
 }
 
-.navbar-brand img {
-  height: 3rem;
+.navbar-brand svg {
+  height: 5rem;
   padding: $spacing-medium;
+  stroke: #000;
+  stroke-width: 0.5;
 }
 
 
