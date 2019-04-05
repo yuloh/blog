@@ -4,6 +4,6 @@
   force = true
 
 [[redirects]]
-  from = "https://www.mattallan.org/*"
+  from = "https://mattallan.org/*"
   to = "https://mattallan.me/:splat"
   force = true
