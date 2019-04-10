@@ -6,7 +6,7 @@ Over the years I've built web applications, online stores, REST APIs, IoT device
 
 I've built a lot of apps with the [Laravel](https://laravel.com) PHP framework and I'm active in the community writing, giving talks, contributing features, and fixing bugs.
 
-if you are looking for a Laravel expert feel free to reach out.  I will be available for short term contracts beginning May 2019.
+If you are looking for a Laravel expert feel free to reach out.  I will be available for short term contracts beginning May 2019.
 
 ## Colophon
 
