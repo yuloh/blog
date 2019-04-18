@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ .Title }}</title>
     {{ $normalize := resources.Get "css/normalize.css" }}
-    {{ $main := resources.Get "css/main.scss" | resources.ToCSS }}
+    {{ $main := resources.Get "css/main.css" }}
     {{ $syntax := resources.Get "css/syntax.css" }}
     {{ $style := slice $normalize $main $syntax | resources.Concat "css/bundle.css" | minify | fingerprint }}
     <link rel="stylesheet" href="{{ $style.Permalink }}">

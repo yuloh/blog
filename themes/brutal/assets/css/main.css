@@ -1,40 +1,43 @@
-// font families
-$serif: Merriweather,'Book Antiqua',Georgia,'Century Schoolbook', serif;
-$sans-serif: 'Lato', sans-serif;
+:root {
+  /* font families */
+  --serif: Merriweather,'Book Antiqua',Georgia,'Century Schoolbook', serif;
+  --sans-serif: 'Lato', sans-serif;
 
-// Typography
-$font-size-base: 1rem;
-$line-height-base: 1.5;
+  /* Typography */
+  --font-size-base: 1rem;
+  --line-height-base: 1.5;
 
-// colors
-$white: #fff;
-$black: #000;
+  /* colors */
+  --white: #fff;
+  --black: #000;
 
-// spacing
-$spacing-none: 0;
-$spacing-extra-small: .25rem;
-$spacing-small: .5rem;
-$spacing-medium: 1rem;
-$spacing-large: 2rem;
-$spacing-extra-large: 4rem;
-$spacing-extra-extra-large: 8rem;
-$spacing-extra-extra-extra-large: 16rem;
-
-body {
-  background: $white;
-  color: $black;
-  font-family: $serif;
-  line-height: $line-height-base;
-  font-size: $font-size-base;
+  /* spacing */
+  --spacing-none: 0;
+  --spacing-extra-small: .25rem;
+  --spacing-small: .5rem;
+  --spacing-medium: 1rem;
+  --spacing-large: 2rem;
+  --spacing-extra-large: 4rem;
+  --spacing-extra-extra-large: 8rem;
+  --spacing-extra-extra-extra-large: 16rem;
 }
 
+body {
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--serif);
+  line-height: var(--line-height-base);
+  font-size: var(--font-size-base);
+}
+
+
 h1, h2, h3, h4, h5, h6 {
-  font-family: $sans-serif;
+  font-family: var(--sans-serif);
   font-weight: 700;
 }
 
 a {
-  color: $black;
+  color: var(--black);
 }
 
 pre, p > code {
@@ -44,13 +47,13 @@ pre, p > code {
 }
 
 pre {
-  padding: $spacing-medium;
+  padding: var(--spacing-medium);
   overflow-x: auto;
 }
 
 p > code {
   border-radius: 2px;
-  padding: $spacing-extra-small;
+  padding: var(--spacing-extra-small);
 }
 
 .navbar {
@@ -67,7 +70,7 @@ p > code {
 
 .navbar-brand svg {
   height: 5rem;
-  padding: $spacing-medium;
+  padding: var(--spacing-medium);
   stroke: #000;
   stroke-width: 0.5;
 }
@@ -93,7 +96,7 @@ p > code {
 }
 
 .navbar-nav li {
-  padding-right: $spacing-medium;
+  padding-right: var(--spacing-medium);
   list-style-type: none;
 }
 
@@ -101,28 +104,28 @@ p > code {
   margin: auto;
   max-width: 64rem;
   min-height: 16rem;
-  padding-left: $spacing-medium;
-  padding-right: $spacing-medium;
+  padding-left: var(--spacing-medium);
+  padding-right: var(--spacing-medium);
 }
 
 .posts {
-  padding-top: $spacing-large;
-  padding-bottom: $spacing-large;
+  padding-top: var(--spacing-large);
+  padding-bottom: var(--spacing-large);
 }
 
 .posts-post {
   border-top: 1px solid #2C2C31;
-  padding-top: $spacing-large;
-  padding-bottom: $spacing-large;
+  padding-top: var(--spacing-large);
+  padding-bottom: var(--spacing-large);
   list-style-type: none;
-  margin-bottom: $spacing-none;
+  margin-bottom: var(--spacing-none);
 }
 
 .posts-post > a {
   text-decoration: none;
-  font-family: $sans-serif;
+  font-family: var(--sans-serif);
   font-weight: 400;
-  line-height: $line-height-base;
+  line-height: var(--line-height-base);
 }
 
 .posts-post > a:hover {
@@ -138,11 +141,11 @@ p > code {
 }
 
 .socialIcon {
-  color: $black;
+  color: var(--black);
   height: 2rem;
   width: 2rem;
-  padding-right: $spacing-small;
-  padding-left: $spacing-small;
+  padding-right: var(--spacing-small);
+  padding-left: var(--spacing-small);
   display: inline-block;
 }
 
@@ -150,18 +153,18 @@ p > code {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: $spacing-large;
+  padding: var(--spacing-large);
 }
 
 .pagination-link {
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  padding: $spacing-medium;
+  padding: var(--spacing-medium);
 }
 
 .pagination-icon {
-  width: $spacing-medium;
+  width: var(--spacing-medium);
 }
 
 .tc {
@@ -171,7 +174,7 @@ p > code {
 @media screen and (min-width: 30em) {
   .navbar-nav {
     justify-content: flex-end;
-    padding-right: $spacing-medium;
+    padding-right: var(--spacing-medium);
   }
   .posts-postTime {
     display: initial;
