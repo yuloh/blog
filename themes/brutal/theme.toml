@@ -1,12 +1,12 @@
 name = "Brutal"
-license = "MIT"
-licenselink = "https://github.com/yuloh/blog"
+license = "proprietary"
+licenselink = "https://github.com/matt-allan/blog"
 description = "My personal blog theme"
-homepage = "http://github.com/yuloh/blog"
+homepage = "http://github.com/matt-allan/blog"
 tags = []
 features = []
 min_version = "0.34"
 
 [author]
   name = "Matt Allan"
-  homepage = "mattallan.org"
+  homepage = "mattallan.me"
