@@ -274,10 +274,9 @@ It's common for error handlers to record `$_SERVER`.  Both [Sentry](https://gith
 
 While researching this article I ran into some `getenv` bugs I hadn't seen before.
 
-<blockquote class="twitter-tweet" data-lang="en" data-align="center"><p lang="en" dir="ltr">Anyone else run into this very strange <a href="https://twitter.com/hashtag/php?src=hash&amp;ref_src=twsrc%5Etfw">#php</a> behavior when using `getenv` to receive a `fastcgi_param`? I can access it with `getenv` but not with `getenv($key)`. <a href="https://t.co/98ah3yJl1n">pic.twitter.com/98ah3yJl1n</a></p>&mdash; Matt Allan (@__mattallan) <a href="https://twitter.com/__mattallan/status/1109182270873788416?ref_src=twsrc%5Etfw">March 22, 2019</a></blockquote>
+{{< tweet 1109182270873788416 >}}
 
-<blockquote class="twitter-tweet" data-lang="en" data-align="center"><p lang="en" dir="ltr">Another weird `getenv` thing: If you have auto_globals_jit enabled you have to access a global somewhere in the script (even after!) for getenv to work. 🤯 <a href="https://t.co/Fvhkn3Zk8s">pic.twitter.com/Fvhkn3Zk8s</a></p>&mdash; Matt Allan (@__mattallan) <a href="https://twitter.com/__mattallan/status/1109203405753499654?ref_src=twsrc%5Etfw">March 22, 2019</a></blockquote>
-
+{{< tweet 1109203405753499654 >}}
 
 This first issue only happens with variables set by the web server, i.e. NGINX's `fastcgi_param`.  The second issue happens with variables set by the web server or set by PHP-FPM.
 
