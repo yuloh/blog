@@ -2,7 +2,7 @@
 baseurl = "https://mattallan.me"
 themesDir = "./themes"
 languageCode = "en-us"
-title = "Matt Allan"
+title = "Matt Allan - Laravel, PHP, and software development"
 theme = "brutal"
 pygmentsCodeFences=true
 pygmentsUseClasses=true
