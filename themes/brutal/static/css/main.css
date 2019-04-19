@@ -1,3 +1,8 @@
+@import 'monokailight.css';
+@import 'monokai.css' (prefers-color-scheme: dark);
+
+
+
 :root {
   /* font families */
   --serif: Merriweather,'Book Antiqua',Georgia,'Century Schoolbook', serif;
@@ -27,7 +32,11 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* todo */
+    --body-bg: #212127;
+    --body-color: #B4B4B4;
+    --link-color: #B4B4B4;
+    --code-bg: #2C2C31;
+    --code-border: #44444c;
   }
 }
 
@@ -188,5 +197,11 @@ p > code {
   .posts-postTime {
     display: initial;
     float: right;
+  }
+}
+
+@supports (prefers-color-scheme: dark) {
+  :root {
+    --body-bg: #000;
   }
 }
