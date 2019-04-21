@@ -23,7 +23,7 @@ I thought it would be really nice to be able to set the guard for a route group 
 
 ```php
 <?php
-Route::group(['domain' => 'api.app.dev', guard' => 'api'], function () {
+Route::group(['domain' => 'api.app.dev', 'guard' => 'api'], function () {
     // ...
 });
 ```
@@ -55,6 +55,12 @@ $this->app['router']->matched(function (\Illuminate\Routing\Events\RouteMatched 
     });
     $this->app['auth']->setDefaultDriver($routeGuard);
 });
+```
+
+Edit: a reader pointed out that you might want to set a guard for the route group but then set a different guard for the specific route.  If you do this the `guard` will be an array.  He suggested fetchching the last element in the array, since that will be the most recently added guard (thanks Mitch!).
+
+```php
+$routeGuard = Arr::last(Arr::wrap($route->getAction(), 'guard'));
 ```
 
 Now our routes can specify a guard, and the default guard will be swapped to that one as soon as the route is resolved.  Awesome 👍
