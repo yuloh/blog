@@ -12,7 +12,7 @@ I can't stand inconsistent formatting of source code.  If I open a file and I ca
 
 In my ideal world every file in the project looks exactly the same.  The braces are always in the same place, the number of spaces never changes, and the code is always organized the same way.
 
-I don't even have to like the standard.  When I write code in the Go programming language I use the included `gofmt` tool to format my code.  I _really_ dislike some of the choices made by `gofmt`, but I happily follow the conventions when writing Go because I never have to think about it.
+I don't even have to like the standard.  When I write code in the Go programming language I use the included `gofmt` tool to format my code.  I _really_ dislike some of the choices made by `gofmt`, but I happily follow the conventions because I never have to think about it.
 
 Since I primarily write PHP applications with Laravel I have been on a quest to find a tool like `gofmt` for my everyday work.  The existing solutions are lacking in some way or another so I just released [a new package](https://github.com/matt-allan/laravel-code-style).  This article covers why it exists, what it  does differently, and how it works.
 
@@ -32,7 +32,7 @@ Enforcing a consistent code style has a lot of benefits.  As the bulk of my prog
 
 ## What's wrong with PSR-2?
 
-In the PHP world we have the [PSR-1](https://github.com/php-fig/fig-standards/blob/4a10f033b4e5690ad90d656281e6e72b82c0626e/accepted/PSR-1-basic-coding-standard.md) and [PSR-2](https://github.com/php-fig/fig-standards/blob/4a10f033b4e5690ad90d656281e6e72b82c0626e/accepted/PSR-2-coding-style-guide.md) standards.  These standards are great and did a lot to improve the PHP consistency within the PHP Ecosystem.  However, they are not a panacea.  The PSRs leave a lot unspecified, resulting in wildly different code styles that still follow PSR-2.  The authors are currently working on a [new standard](https://github.com/php-fig/fig-standards/blob/4a10f033b4e5690ad90d656281e6e72b82c0626e/proposed/extended-coding-style-guide.md) to address some of these shortcomings.
+In the PHP world we have the [PSR-1](https://github.com/php-fig/fig-standards/blob/4a10f033b4e5690ad90d656281e6e72b82c0626e/accepted/PSR-1-basic-coding-standard.md) and [PSR-2](https://github.com/php-fig/fig-standards/blob/4a10f033b4e5690ad90d656281e6e72b82c0626e/accepted/PSR-2-coding-style-guide.md) standards.  These standards are great and did a lot to improve the consistency within the PHP Ecosystem.  However, they are not a panacea.  The PSRs leave a lot unspecified, resulting in wildly different code styles that still follow PSR-2.  The authors are currently working on a [new standard](https://github.com/php-fig/fig-standards/blob/4a10f033b4e5690ad90d656281e6e72b82c0626e/proposed/extended-coding-style-guide.md) to address some of these shortcomings.
 
 As an example of what I am talking about, consider these two versions of the same code:
 
@@ -111,19 +111,19 @@ Both of these files are valid PSR-2.  However there are a lot of differences bet
 
 Clearly there is a lot left undefined by PSR-2.
 
-The [Symfony coding standard](https://symfony.com/doc/current/contributing/code/standards.html) augments PSR-2 with over 100 additional rules.  The [Laravel coding style](https://laravel.com/docs/5.8/contributions#coding-style) comes close with just under 100 rules.
+To keep the framework's code consistent the [Symfony coding standard](https://symfony.com/doc/current/contributing/code/standards.html) augments PSR-2 with over 100 additional rules.  The [Laravel coding style](https://laravel.com/docs/5.8/contributions#coding-style) comes close with just under 100 rules.
 
 ## Laravel's code style
 
-The canonical definition of Laravel's code style is [StyleCI's Laravel preset](https://docs.styleci.io/presets#laravel).  StyleCI is a service that automatically fixes code style when someone opens a pull request or makes a commit.  Laravel uses StyleCI across all of its repos.
+The canonical definition of Laravel's code style is StyleCI's Laravel preset.  [StyleCI](https://styleci.io) is a service that automatically fixes code style when someone opens a pull request or makes a commit.  Laravel uses StyleCI across all of its repos.
 
 Outside of the StyleCI preset there isn't much documentation telling you what the rules are.  To get an idea of what the rules are [have a read through the StyleCI docs](https://docs.styleci.io/presets#laravel) or [check out an example](https://github.com/matt-allan/laravel-code-style/blob/020f56a420e674f71c50d15f201bb80fe36a1ea7/examples/User.php).
 
 ## Why use Laravel's standard?
 
-You don't have to follow Laravel's code style just because you're writing Laravel apps.  If you have a standard that works for you that is awesome, continue using it.
+You don't have to follow Laravel's code style just because you're writing Laravel apps.  If you have a standard that works for you that's awesome, continue using it.
 
-If you _don't_ have a standard you have to decide how you are going to format your code.  As explained above, the PSR standards aren't specific enough.  The Symfony coding standard doesn't match any of the code that is included in a new Laravel app, doesn't match any of the code generated with the `make` methods, and includes some controversial opinions like requiring [yoda conditions](https://en.wikipedia.org/wiki/Yoda_conditions).  You could write your own standard but you need to maintain ~100 lines of rules and you need to convince everyone to agree with those rules.
+If you _don't_ have a standard you have to decide how you are going to format your code.  As explained above, the PSR standards aren't specific enough.  The Symfony coding standard doesn't match any of the code that is included in a new Laravel app, doesn't match any of the code generated with the `make` methods, and includes some controversial opinions like requiring [yoda conditions](https://en.wikipedia.org/wiki/Yoda_conditions), so that isn't a good solution either.  You could write your own standard but you need to maintain ~100 lines of rules and you need to convince everyone to agree with those rules.
 
 
 ## What about StyleCI?
@@ -140,19 +140,19 @@ With a local tool I can format the code _before_ I commit, which makes my life a
 
 So I put together a simple tool.  The bulk of the work is done by [PHP CS Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer).  The [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) is another popular option, but I went with PHP CS Fixer because it supports all of the rules I needed.
 
-After installing PHP Cs Fixer I started figuring out the configuration.  Some of the PHP CS Fixer rules were an exact match for the StyleCI rule which made things easy.  A lot of the rules have different names though.  For example, the StyleCI rule `length_ordered_imports` corresponds to the `ordered_imports` PHP CS Fixer rule with the configuration option `'sort_algorithm' => 'length`.  In some cases PHP CS Fixer _used to have_ a matching rule but it had since been renamed.
+After installing PHP CS Fixer I started figuring out the configuration.  Some of the PHP CS Fixer rules were an exact match for the StyleCI rule which made things easy.  A lot of the rules have different names though.  For example, the StyleCI rule `length_ordered_imports` corresponds to the `ordered_imports` PHP CS Fixer rule with the configuration option `'sort_algorithm' => 'length`.  In some cases PHP CS Fixer _used to have_ a matching rule but it had since been renamed.
 
 To ensure the rules stay in sync I added a PHPUnit test that formats the entire Laravel framework and compares the results. If an existing Laravel file does not match our rule set the build is failed.
 
 ## Usage
 
-I tried to make setting up the package as simple as possible.  Once you require the package with composer you publish the PHP CS Fixer config.  The configuration is already setup for a Laravel application so you don't need to waste any time setting paths or deciding which rules to use.
+I tried to make setting up the package as simple as possible.  Once you require the package with composer you publish the PHP CS Fixer config.  The configuration is already setup for a Laravel application.  You don't need to waste any time setting paths or deciding which rules to use.
 
 <script id="asciicast-244685" src="https://asciinema.org/a/244685.js" async></script>
 
-With a brand new Laravel application a few files will be updated because of the `no_unused_imports` rule - Laravel includes the unused imports so you know they are available, but you don't really want to keep unused imports around once you start developing.
+With a brand new Laravel application a few files will be updated because of the `no_unused_imports` rule.  Laravel includes the unused imports so you know they are available, but you don't really want to keep unused imports around once you start developing.
 
-If you wanted to disable this rule it's easy enough - just open up `.php_cs` and add `'no_unused_imports' => false` to the rules array.
+If you wanted to disable this rule it's easy enough.  Just open up the `.php_cs` file and add `'no_unused_imports' => false` to the rules array.
 
   ```php
  <?php
@@ -181,7 +181,7 @@ If you wanted to disable this rule it's easy enough - just open up `.php_cs` and
 
 ## Integrating code formatting with your workflow
 
-You probably don't want to manually run the `fix` command every  time you edit a line of code.  Luckily this is easy to automate.
+You probably don't want to manually run the `fix` command every time you edit a line of code.  Luckily this is easy to automate.
 
 Git supports a feature called 'hooks' that lets you run scripts before committing or pushing.  There is a nifty composer plugin called [GrumPHP](https://github.com/phpro/grumphp) that will setup the hooks for you.  Just use the [PHP-Cs-Fixer 2 task](https://github.com/phpro/grumphp/blob/362a7394a3f766c374b9062b6d393dd0d61ca87a/doc/tasks/phpcsfixer2.md) to check your code style.
 
