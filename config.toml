@@ -2,11 +2,22 @@
 baseurl = "https://mattallan.me"
 themesDir = "./themes"
 languageCode = "en-us"
-title = "Matt Allan - Laravel, PHP, and software development"
+title = "Matt Allan"
 theme = "brutal"
 pygmentsCodeFences=true
 pygmentsUseClasses=true
 paginate = 5
+
+[params]
+  description = "Articles about Laravel, PHP, and software development."
+  images = ["img/logo.png"]
+
+
+[params.social]
+  twitter = "__mattallan"
+  github = "matt-allan"
+  email = "matt@mattallan.me"
+
 
 [menu]
   [[menu.main]]
