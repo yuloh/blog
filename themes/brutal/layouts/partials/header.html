@@ -6,7 +6,6 @@
     <title>{{ .Title }}</title>
     <link rel="stylesheet" href="{{ "css/normalize.css" | absURL }}">
     <link rel="stylesheet" href="{{ "css/main.css" | absURL }}">
-    <link rel="stylesheet" href="{{ "css/monokailight.css" | absURL }}">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     {{ range .AlternativeOutputFormats -}}
       {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
