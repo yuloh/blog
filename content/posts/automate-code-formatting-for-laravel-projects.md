@@ -161,7 +161,7 @@ If you wanted to disable this rule it's easy enough.  Just open up the `.php_cs`
 
 ->setRules([
     '@Laravel' => true,
-    'no_unused_imports' => falsem
+    'no_unused_imports' => false,
 ]);
 ```
 
