@@ -4,9 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ .Title }}</title>
-    <link rel="stylesheet" href="{{ "css/normalize.css" | absURL }}">
-    <link rel="stylesheet" href="{{ "css/main.css" | absURL }}">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  {{ $normalize := resources.Get "css/normalize.css" }}
+  {{ $main := resources.Get "css/main.css" }}
+  {{ $syntax := resources.Get "css/monokailight.css" }}
+  {{ $syntaxDark := resources.Get "css/monokai.css" }}
+  {{ $style := slice $normalize $main $syntax $syntaxDark | resources.Concat "css/bundle.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $style.Permalink }}">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     {{ range .AlternativeOutputFormats -}}
       {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
     {{ end -}}
