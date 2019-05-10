@@ -7,3 +7,17 @@
   from = "https://mattallan.org/*"
   to = "https://mattallan.me/:splat"
   force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Only support HTTPS on all domains
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    # Upgrade all HTTP requests to HTTPS
+    Content-Security-Policy = "upgrade-insecure-requests"
+    # Don't allow embedding this site in an iframe
+    X-Frame-Options = "DENY"
+  for = "/css/*"
+  [headers.values]
+    # cache css for a year
+    cache-control = "max-age=31536000"
