@@ -1,6 +1,9 @@
 ---
 title: How PHP Environment Variables Actually work
 date: 2019-03-26T12:00:00-05:00
+description: Learn what environment variables are, how they work, and how to correctly use them in your PHP code.
+images: ["img/environment-variables.png"]
+tags: ["php"]
 ---
 
 ## Introduction
