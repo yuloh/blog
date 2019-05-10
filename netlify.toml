@@ -17,6 +17,8 @@
     Content-Security-Policy = "upgrade-insecure-requests"
     # Don't allow embedding this site in an iframe
     X-Frame-Options = "DENY"
+
+[[headers]]
   for = "/css/*"
   [headers.values]
     # cache css for a year
