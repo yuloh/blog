@@ -1,7 +1,9 @@
 ---
 title: Making Laravel Scout Imports 64x Faster
 date: 2019-03-11T12:00:00-05:00
-draft: false
+description:
+images: ["img/scout-imports.png"]
+tags: ["laravel", "php"]
 ---
 
 The next release of [Laravel Scout](https://laravel.com/docs/5.8/scout) will be able to index your models ~64x faster [^1].  You can see the pull request [here](https://github.com/laravel/scout/pull/360).
