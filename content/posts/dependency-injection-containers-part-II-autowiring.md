@@ -4,11 +4,11 @@ date: 2016-09-01T12:00:00-05:00
 aliases: [/2016/dependency-injection-containers-part-II-autowiring/]
 ---
 
-# Introduction
+## Introduction
 
 This article is a follow up to [Understanding Dependency Injection Containers]({{ site.baseurl }}2016/dependency-injection-containers/).  In the first part we learned how a basic dependency injection (DI) container works, and wrote our own closure based container.  This part is going to focus on autowiring.
 
-# Autowiring
+## Autowiring
 
 Our container is pretty helpful, but it's still a bit annoying to use.  Having to write `$container->set(...)` for every dependency is tiring.  Wouldn't it be nice if the container could just figure out what you wanted?
 
@@ -44,9 +44,9 @@ If you are on PHP 5.5 or newer (which you really should be), you can use the `::
 $controller = $container->get(UsersController::class);
 ```
 
-# Writing The Code
+## Writing The Code
 
-## Getting Ready
+### Getting Ready
 
 Right now our `get` method looks like this:
 
@@ -79,7 +79,7 @@ public function get($id)
 ```
 
 
-## Finding Dependencies
+### Finding Dependencies
 
 To make this work, we need a way to figure out what the dependencies are of a class.  Luckily PHP has a complete [Reflection API](http://php.net/manual/en/book.reflection.php).  Reflection is a way to reverse engineer classes.  You can use reflection to see what methods exist, if they are public, if they are static, what the docblocks are, etc.  Most importantly, you can use reflection to see what a method's parameters are.
 
@@ -132,7 +132,7 @@ Otherwise we need to figure out what the dependencies are.  There's a method cal
 $dependencies = $constructor->getParameters();
 ```
 
-## Instantiating Dependencies
+### Instantiating Dependencies
 
 We need an array of instantiated dependencies, so let's iterate over these and try to instantiate them.  If the dependency isn't a class we should throw, since we can't really do anything about it†.
 
@@ -154,7 +154,7 @@ $dependencies = array_map(function (ReflectionParameter $dependency) use ($id) {
 }, $dependencies);
 ```
 
-## Building Our Class
+### Building Our Class
 
 Finally we get to build our class!  The Reflection API has a method that lets us pass in an array of dependencies and it calls the constructor for us.  Just pass in our array of instantiated classes and we get our fully built object back.
 
@@ -164,7 +164,7 @@ Finally we get to build our class!  The Reflection API has a method that lets us
 return $reflector->newInstanceArgs($dependencies);
 ```
 
-## All Together Now
+### All Together Now
 
 If you followed along, your `get` method should look something like this.  I added an extra check to make sure the class isn't abstract or an interface, since we can't instantiate that.  It would probably help to add some more checks, like if the constructor is private, if it allows null or default values, etc.
 
@@ -217,15 +217,15 @@ public function get($id)
 
 I pushed a git branch [over here](https://github.com/yuloh/container/tree/autowiring) with a basic test, so take a look if you want to see how it works.
 
-# Summary
+## Summary
 
 Hopefully that helps explain WTF is happening when your framework magically injects everything.
 
-## Performance
+### Performance
 
 A lot of people like to complain that reflection is an expensive operation and you shouldn't use it.  I like autowiring and use it all the time.  If I notice my app getting slow I can just add explicit entries in the container for everything and it won't autowire anymore.  Or, since I usually use PHP-DI I can just [cache the entries](http://php-di.org/doc/performances.html).
 
-## Autowiring Containers
+### Autowiring Containers
 
 Sold on autowiring? These are the containers I know of that support it:
 

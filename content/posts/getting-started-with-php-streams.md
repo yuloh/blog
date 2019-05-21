@@ -3,9 +3,9 @@ title: Getting Started With PHP Streams
 date: 2015-11-04T12:00:00-05:00
 aliases: [/2015/getting-started-with-php-streams/]
 ---
-# Streams
+## Streams
 
-## Why Use Streams
+### Why Use Streams
 
 Most of the time, you open files as strings, using something like `file_get_contents()`.  This works, but PHP will load the entire file in to memory as a string.  If you open a 20MB file, it's going to consume 20MB of memory.  With small files, this is convenient and it's OK.  Most PHP installations are set to use a really small amount of memory, like 64MB [^n].  If you wanted to work with a really big file, you are going to run in to problems.
 
@@ -39,9 +39,9 @@ stream_copy_to_stream($handle, $dest);
 
 The computer reads one byte at a time, instead of trying to read it all at once.  It's a lot like the old Windows folder animation of one piece of paper at a time being copied from the source to the destination.
 
-## Stream Basics
+### Stream Basics
 
-### Opening
+#### Opening
 
 Ok, so let's go over some stream basics.  We already saw how to open a stream:
 
@@ -53,7 +53,7 @@ $handle = fopen('some-file.txt', 'r');
 
 The first parameter is the filename, and the second parameter is the mode.  The handle that the function returned lets you reference the stream later.  If you need to use a different mode, check the [documentation](http://php.net/manual/en/function.fopen.php), there are alot of them.
 
-### Reading
+#### Reading
 
 So if the point of a stream is to limit how much you read in to memory at once, how do you read a little bit at a time?
 

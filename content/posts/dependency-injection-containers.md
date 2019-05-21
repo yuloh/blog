@@ -4,7 +4,7 @@ date: 2016-07-15T12:00:00-05:00
 aliases: [/2016/dependency-injection-containers/]
 ---
 
-# Introduction
+## Introduction
 
 If you are writing modern PHP, you will run across dependency injection a lot. Basically all dependency injection means is that if an object needs something, you pass it in.  So if you have a class like this:
 
@@ -68,7 +68,7 @@ $usersController = new UsersController($userRepository);
 
 Dependency injection makes your code more flexible and easier to test.  If you want to learn more about dependency injection in general, check out [this summary in the PHP The Right Way guide](http://www.phptherightway.com/#dependency_injection).
 
-# Containers
+## Containers
 
 Once you are doing this all over the place, you end up writing a lot of boilerplate code to create each object.  Now when we create the controller we need to create it's dependency (the user repository), and that dependencies dependency (the db adapter) etc.  It's a pain.  To make that easier we use containers.
 
@@ -88,9 +88,9 @@ $container->set(DbAdapter::class, function () {
 });
 ```
 
-## Writing a Simple Container
+### Writing a Simple Container
 
-### Setting Entries
+#### Setting Entries
 
 To understand how this works, lets write a simple container.  The first thing we need is a `set` method.  The `set` method will accept a string name for the entry and an [anonymous function](http://php.net/manual/en/functions.anonymous.php) for the definition.  We are type hinting the [Closure](http://php.net/manual/en/class.closure.php) class to make sure they actually give us an anonymous function.
 
@@ -116,7 +116,7 @@ class Container
 }
 ```
 
-### Getting Entries
+#### Getting Entries
 
 Now we need to be able to get an entry back.  To get something out of the container, we just need to check our array of entries for the id.  If it's there we need to invoke the closure and return it's value.
 
@@ -152,7 +152,7 @@ class Container
 
 It should be clear why containers use closures now.  The code inside of the closure isn't actually ran until you try to resolve the entry, so you aren't creating the objects until you need them.
 
-### Getting Entries That Need Other Entries
+#### Getting Entries That Need Other Entries
 
 Now we have a simple container that works.  We can add entries and resolve them.  But what about entries that depend on other entries?  All you need to do is pass in the container as the first argument to the closure.
 
@@ -201,7 +201,7 @@ $container->set(UserRepository::class, function (Container $container) {
 
 Since the closure isn't invoked until you try to resolve something, you can register your entries in whatever order you like and it will work.
 
-### Binding Singletons
+#### Binding Singletons
 
 Right now `$container->get()` will invoke the closure each time it's called and create a brand new object.  Sometimes you want to bind a [singleton](https://en.wikipedia.org/wiki/Singleton_pattern) entry, where each call to `get` returns the same instance.
 
@@ -238,6 +238,6 @@ class Container
 }
 ```
 
-### Wrapping Up
+#### Wrapping Up
 
 Awesome!  Now you have a container that has enough features to be useful.  If you would like to see an example of what everything looks like together, checkout [the source code of yuloh/container](https://github.com/yuloh/container/blob/master/src/Container.php), a simple container built just like this.

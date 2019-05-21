@@ -4,17 +4,17 @@ date: 2016-03-31T12:00:00-05:00
 aliases: [/2016/automatically-run-unit-tests-with-entr/]
 ---
 
-# Introduction
+## Introduction
 
 I do a lot of test driven development, and generally use tests a lot when I'm writing code.  It's nice to have your tests automatically run every time you save a file, so you know if you broke something.
 
 This guide will show you how to make that happen.  Since I mostly do PHP development, this guide will focus on using PHPUnit, but this would work for any test runner.
 
-# entr
+## entr
 
 [Entr](http://entrproject.org/) is a great little unix utility that does one thing well - automatically execute a task when something changes.  There are other utilities like [watchman](https://facebook.github.io/watchman/) plus a million node projects, but I like entr because it's simple.
 
-## Installation
+### Installation
 
 Mac:
 
@@ -30,7 +30,7 @@ sudo apt install entr
 
 For other platforms refer to the [docs](https://bitbucket.org/eradman/entr/).  it looks like entr doesn't seem to work on Windows.  Sorry!
 
-## Usage
+### Usage
 
 Now that entr is installed, lets use it to run phpunit!
 
@@ -64,7 +64,7 @@ phpunit
 
 The command to run.
 
-## In Action
+### In Action
 
 This is what it looks like:
 
@@ -72,7 +72,7 @@ This is what it looks like:
 
 Pretty cool huh?
 
-## More Complicated Commands
+### More Complicated Commands
 
 If you need to run a more complicated command, you can use `sh` and put the command in quotes.  Here's an example that uses osx [say](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/say.1.html) to let you know out loud if you break something.
 
@@ -80,7 +80,7 @@ If you need to run a more complicated command, you can use `sh` and put the comm
 find src/ | entr sh -c "phpunit && say 'good work' || say 'oh no'"
 ```
 
-## File Limits
+### File Limits
 
 You might try to run entr and get a message like this:
 

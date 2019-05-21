@@ -4,7 +4,7 @@ date: 2018-11-01T14:59:42-05:00
 draft: false
 ---
 
-# Introduction
+## Introduction
 
 Lately I've been learning [TypeScript](https://www.typescriptlang.org/), a typed superset of JavaScript that compiles down to plain JavaScript.  It's easy enough to run my scripts with node, but running them in the browser can be complex.
 
@@ -36,7 +36,7 @@ Browsers can't load the CommonJS modules either, so the typical solution is to r
 
 The bundlers are not simple.  They each have their own API for registering plugins and config file format.  Putting together a working setup can be pretty challenging, especially if you are still learning.
 
-# Bundling With The TypeSript Compiler
+## Bundling With The TypeSript Compiler
 
 It turns out the TypeScript compiler can bundle your code, so you don't need a separate bundler like Browserify or webpack.
 
@@ -60,7 +60,7 @@ tsc --outfile ./dist/bundle.js --module system ./src/index.ts
 }
 ```
 
-## Loading System.js Modules
+### Loading System.js Modules
 
 Once you have a bundle of modules you need a way to load them.  [SystemJs](https://github.com/systemjs/systemjs) offers a minimal 1.5KB loader which is able to load the TypeScript bundle.  The TypeScript bundle is still using the `System.register('name', ...)` format to register modules which was deprecated in SystemJS 2.0.  You will need to include the `named-register` plugin as well for module registration to work correctly.
 
@@ -85,7 +85,7 @@ After you include SystemJs you just need to call `System.import` to load the ent
 </html>
 ```
 
-## Loading AMD Modules
+### Loading AMD Modules
 
 It's also possible to generate a bundle using the AMD module format.
 
@@ -113,15 +113,15 @@ tsc --outfile ./dist/bundle.js --module amd ./src/index.ts
 </html>
 ```
 
-## File Watching
+### File Watching
 
 It's common for bundlers to recompile your code automatically when a file updates.  The TypeScript compiler can do this too using the `--watch` flag.
 
-## ES6 Support
+### ES6 Support
 
 You probably don't need to setup [Babel](https://babeljs.io/).  The `--target` option of the TypeScript compiler determines which JavaScript version you target.  If you keep the default of ES3 or specify ES5 it will take care of transforming ES6 features into something the browser can understand.  You can use the `--allowJs` flag to transform non TypeScript files too.
 
-## JSX
+### JSX
 
 If you are using React, Preact, Mithril, or a similar framework you might want to write JSX.  The TypeScript compiler can optionally transform JSX too.  You just need to save the source file with a `.tsx` extension and set the `--jsx` flag to `React`.  If you are using a framework like Preact you also need to specify the `--jsxFactory` option, i.e. `--jsxFactory h` for Preact.
 
@@ -129,6 +129,6 @@ If you are using React, Preact, Mithril, or a similar framework you might want t
 tsc --jsx React --jsxFactory h ./src/App.tsx
 ```
 
-# Conclusion
+## Conclusion
 
 You might still end up using a bundler eventually but it's nice to be able to write modern JavaScript without 300MB of dependencies in `node_modules`.

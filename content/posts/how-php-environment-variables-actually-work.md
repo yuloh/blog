@@ -178,7 +178,7 @@ PHP_FUNCTION(getenv)
 
 Next we call `getenv` the c function (on Unix; Windows calls `GetEnvironmentVariableW`).  This is really important.  The superglobals will only read the system environment variables when they are first initialized.  `getenv` will read the system environment variables every time it's called.  This becomes a problem if you use threads.
 
-# Thread Safety
+## Thread Safety
 
 The c function `getenv` is not required to be thread-safe.  If you call `getenv` while another thread is calling `putenv` it can cause a segmentation fault.
 
@@ -224,7 +224,7 @@ A much simpler solution is to avoid calling `putenv` in worker threads.  If you 
 
 Some developers are using a threaded web server so they can't actually execute their code outside of the worker thread.  PHP [shouldn't be used with a threaded server](https://www.php.net/manual/en/faq.installation.php#faq.installation.apache2) anyway, but if you insist on doing this you can avoid the segmentation fault by only calling `putenv` if `getenv` returns false and wrapping the whole thing in a mutex.  Since environment variables are shared between threads only the first request will call `putenv`.
 
-# Spawning Processes
+## Spawning Processes
 
 Environment variables aren't only shared between threads, they are shared with child processes too.  When you spawn a process with `exec`, `passthru`, `system`, `shell_exec`, `proc_open`, or the backtick operator the child process inherits the parent's environment.
 
@@ -247,7 +247,7 @@ As mentioned above, Adding a variable to `$_ENV` or `$_SERVER` does not add it t
 The [Symfony process component](https://symfony.com/doc/current/components/process.html) _does_ [pass `$_SERVER` and `$_ENV` to the child process by default](https://github.com/symfony/process/blob/e9f208633ac7ef167801cf4da916e07a6149fa33/Process.php#L1634).  To prevent that you can [explicitly set the environment variables](https://symfony.com/doc/current/components/process.html#setting-environment-variables-for-processes).
 
 
-# Watch Out For HTTP Headers
+## Watch Out For HTTP Headers
 
 I alluded to this above, but it's important enough to merit its own section.  **Every method of accessing environment variables can return HTTP headers, including `getenv`.**
 
@@ -255,7 +255,7 @@ When a header is included with the environment in a CGI application it's prefixe
 
 `getenv` allows you to pass a second parameter, [`local_only`](https://www.php.net/manual/en/function.getenv.php).  If true [the SAPI will not be checked](https://github.com/php/php-src/blob/d49371fbd489b6767acf09afa7903e0a0558b5b4/ext/standard/basic_functions.c#L4082).  if `local_only` is true HTTP headers, variables set in fpm.conf, and variables set in the web server configuration will be excluded.  It isn't possible to use `local_only` when returning all environment variables - `getenv(null, true)` will return false.
 
-# Keep Secrets Secret
+## Keep Secrets Secret
 
 It's a lot easier to leak an environment variable than it is to leak a PHP variable.  It's important to understand all of the ways you can leak an environment variable if you are using them for secrets.
 
@@ -273,7 +273,7 @@ Environment variables are passed to child processes, threads, and forks.
 
 It's common for error handlers to record `$_SERVER`.  Both [Sentry](https://github.com/getsentry/sentry-php/pull/326) and [Airbrake](https://github.com/airbrake/phpbrake/issues/51) did this.
 
-# getenv Doesn't Always Work
+## getenv Doesn't Always Work
 
 While researching this article I ran into some `getenv` bugs I hadn't seen before.
 
@@ -285,7 +285,7 @@ This first issue only happens with variables set by the web server, i.e. NGINX's
 
 The second issue is pretty amazing.  It makes sense when you consider how `auto_globals_jit` works ("Usage of SERVER, REQUEST, and ENV variables is checked during the compile time") but I don't think it was intentional.
 
-# Conclusion
+## Conclusion
 
 Environment variables in PHP are confusing, inconsistent, and sometimes dangerous.  CGI makes the problem worse by merging user input into the environment variables.  If you have to use them prefer `getenv`, avoid calling `putenv` in threads, never trust a variable starting with `HTTP_`, and verify you aren't leaking secrets to other processes or services.  If you are writing software that is going to be configured by inexperienced system administrators it's probably best to avoid environment variables entirely.
 

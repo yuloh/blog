@@ -4,9 +4,9 @@ date: 2018-01-01T12:00:00-05:00
 draft: true
 ---
 
-# Introduction
+## Introduction
 
-# The Database Schema
+## The Database Schema
 
 ```
 +-------------------+
@@ -56,23 +56,23 @@ draft: true
 +-------------------+
 ```
 
-# Relationship Types
+## Relationship Types
 
-## One To One
+### One To One
 
-### Has One
+#### Has One
 
-### The Inverse: Belongs To One
+#### The Inverse: Belongs To One
 
-## One To Many
+### One To Many
 
-### Has Many
+#### Has Many
 
-### The Inverse: Belongs To One
+#### The Inverse: Belongs To One
 
-## Many To Many
+### Many To Many
 
-## The Inverse: Belongs To Many
+### The Inverse: Belongs To Many
 
-## Polymorphic Relationships
+### Polymorphic Relationships
 
