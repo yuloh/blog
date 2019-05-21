@@ -180,6 +180,20 @@ p > code {
   width: var(--spacing-medium);
 }
 
+.anchor {
+  margin-left: var(--spacing-small);
+}
+
+.anchor-link {
+  visibility: hidden;
+  width: 1rem;
+  height: 1rem;
+}
+
+h1:hover .anchor-link, h2:hover .anchor-link, h3:hover .anchor-link, h4:hover .anchor-link {
+  visibility: visible;
+}
+
 .tc {
   text-align: center;
 }
