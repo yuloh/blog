@@ -6,7 +6,7 @@ draft: true
 
 ## Introduction
 
-This is the first of a multi-part blog series about [Laravel Passport](https://laravel.com/docs/7.x/passport). We're going to build an authorization server and a few of the popular client types most servers will need to support. Along the way I'll explain best practices and provide guidance around the security decisions you have to make.
+This is part I of a multi-part blog series about [Laravel Passport](https://laravel.com/docs/7.x/passport). We're going to build an authorization server and a few of the popular client types most servers will need to support. Along the way I'll explain best practices and provide guidance around the security decisions you have to make.
 
 In part I we will build the Passport Authorization server. The Authorization server hosts your login page, password reset page, and any other authentication pages. Typically it will also host the API that's being protected.
 
@@ -200,4 +200,4 @@ At this point you can visit `passport.test` in your browser, register, and once 
 
 ## Conclusion
 
-The Laravel application now serves a fully spec compliant OAuth 2.0 authorization server. Any OAuth 2.0 client will be able to complete the authorization flow and obtain an access token. In the next part of this series we will build our first client, a server side web app, using the [Laravel Socialite](https://laravel.com/docs/7.x/socialite) package. You can [sign up to my newsletter](https://mailchi.mp/335f6a2271b0/mattallanme) to be notified when the next article is live.
+The Laravel application now serves a fully spec compliant OAuth 2.0 authorization server. Any OAuth 2.0 client will be able to complete the authorization flow and obtain an access token. In the next part of this series we will build our first client, a server-side web app, using the [Laravel Socialite](https://laravel.com/docs/7.x/socialite) package. You can [sign up to my newsletter](https://mailchi.mp/335f6a2271b0/mattallanme) to be notified when the next article is live.
