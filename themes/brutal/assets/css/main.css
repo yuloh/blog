@@ -194,6 +194,25 @@ h1:hover .anchor-link, h2:hover .anchor-link, h3:hover .anchor-link, h4:hover .a
   visibility: visible;
 }
 
+.dark-mode-toggle {
+  background: var(--body-bg);
+  color: var(--body-color);
+  border: none;
+  margin-right: var(--spacing-small);
+}
+
+@media (prefers-color-scheme: dark) {
+  .dark-mode-toggle > .feather-moon {
+    display: none;
+  }
+}
+
+@media (prefers-color-scheme: light), (prefers-color-scheme: no-preference) {
+  .dark-mode-toggle > .feather-sun {
+    display: none;
+  }
+}
+
 .tc {
   text-align: center;
 }
