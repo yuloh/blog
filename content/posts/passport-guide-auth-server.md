@@ -6,11 +6,7 @@ draft: true
 
 ## Introduction
 
-The Laravel framework makes authentication and authorization simple. If you're building an API you will probably need to support [OAuth](https://en.wikipedia.org/wiki/OAuth). The OAuth protocol is incredibly complicated but Laravel makes this pretty simple too. The official package [Laravel Passport](https://laravel.com/docs/7.x/passport) provides a full standards compliant OAuth 2.0 server implementation.
-
-That being said, there's still a lot of confusion around Passport. It's not immediately obvious which grant you should use, how to store the access token, how to refresh expired tokens, or if you should even use Passport.
-
-This is the first of a multi-part blog series about Passport. We're going to build an authorization server and a few of the popular client types most servers will need to support. Along the way I'll explain best practices and provide guidance around the security decisions you will have to make.
+This is the first of a multi-part blog series about [Laravel Passport](https://laravel.com/docs/7.x/passport). We're going to build an authorization server and a few of the popular client types most servers will need to support. Along the way I'll explain best practices and provide guidance around the security decisions you have to make.
 
 In part I we will build the Passport Authorization server. The Authorization server hosts your login page, password reset page, and any other authentication pages. Typically it will also host the API that's being protected.
 
@@ -204,4 +200,4 @@ At this point you can visit `passport.test` in your browser, register, and once 
 
 ## Conclusion
 
-The Laravel application now serves a fully spec compliant OAuth 2.0 authorization server. Any OAuth 2.0 client will now be able to complete the authorization flow and obtain an access token. In the next part of this series we will build our first client, a server side web app client, using the [Laravel Socialite](https://laravel.com/docs/7.x/socialite) package.
+The Laravel application now serves a fully spec compliant OAuth 2.0 authorization server. Any OAuth 2.0 client will be able to complete the authorization flow and obtain an access token. In the next part of this series we will build our first client, a server side web app, using the [Laravel Socialite](https://laravel.com/docs/7.x/socialite) package. You can [sign up to my newsletter](https://mailchi.mp/335f6a2271b0/mattallanme) to be notified when the next article is live.

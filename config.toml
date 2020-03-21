@@ -16,6 +16,7 @@ paginate = 5
 [params.social]
   twitter = "__mattallan"
   github = "matt-allan"
+  newsletter = "https://mailchi.mp/335f6a2271b0/mattallanme"
   email = "matt@mattallan.me"
 
 

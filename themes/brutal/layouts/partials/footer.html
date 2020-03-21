@@ -35,8 +35,8 @@
         </svg>
       </a>
       {{ end }}
-      {{ with .Site.Params.social.email }}
-      <a class="socialIcon" href="mailto:{{ . }}" title="E-Mail">
+      {{ with .Site.Params.social.newsletter }}
+      <a class="socialIcon" href="{{ . }}" title="Newsletter">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
