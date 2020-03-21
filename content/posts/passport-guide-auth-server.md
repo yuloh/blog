@@ -6,7 +6,15 @@ draft: true
 
 ## Introduction
 
-TODO
+The Laravel framework makes authentication and authorization simple. If you're building an API you will probably need to support [OAuth](https://en.wikipedia.org/wiki/OAuth). The OAuth protocol is incredibly complicated but Laravel makes this pretty simple too. The official package [Laravel Passport](https://laravel.com/docs/7.x/passport) provides a full standards compliant OAuth 2.0 server implementation.
+
+That being said, there's still a lot of confusion around Passport. It's not immediately obvious which grant you should use, how to store the access token, how to refresh expired tokens, or if you should even use Passport.
+
+This is the first of a multi-part blog series about Passport. We're going to build an authorization server and a few of the popular client types most servers will need to support. Along the way I'll explain best practices and provide guidance around the security decisions you will have to make.
+
+In part I we will build the Passport Authorization server. The Authorization server hosts your login page, password reset page, and any other authentication pages. Typically it will also host the API that's being protected.
+
+If at any point you get stuck check the [example application on Github](https://github.com/matt-allan/passport-guide-server). You can [view the commits](https://github.com/matt-allan/passport-guide-server/commits/master) to see what changes were made in each section of the guide.
 
 ## Setting up Laravel
 
@@ -34,13 +42,11 @@ If you are using Laravel Valet and you created the passport server in your "park
 
 Go ahead and open your browser and navigate to `passport.test`. You should be greeted by the default welcome page. If something went wrong review Laravel's [getting started documentation](https://laravel.com/docs/6.x/installation).
 
-![The default welcome page](/img/passport-guide-part-I-authorization-server/welcome.png)
+{{< figure src="/img/passport-guide-part-I-authorization-server/welcome-800.png" link="/img/passport-guide-part-I-authorization-server/welcome.png" title="The default welcome page" class="tc" target="_blank" >}}
 
 If you don't see the "login" and "register" links in the navigation bar you may have forgotten to scaffold the authentication. Run the commands `php artisan ui:auth` and `php artisan migrate`, then reload the page.
 
 Go ahead and set the `APP_URL` to `http://passport.test` in your `.env` file.
-
-<!-- 5fd9b0aefa1917abbc9c84b212efba442dddee3a -->
 
 
 ## Installing Passport
@@ -118,6 +124,7 @@ class AuthServiceProvider extends ServiceProvider
 Finally you can instruct the `api` authentication guard to use Passport instead of token authentication. Within the `config/auth.php` config file you will find an `api` guard. The `driver` option should be changed from `token` to `passport`. The `hash` option is not supported at this time so it can be deleted. The updated configuration should look like this:
 
 ```php
+<?php
     // ...
     'guards' => [
         'web' => [
@@ -132,8 +139,6 @@ Finally you can instruct the `api` authentication guard to use Passport instead 
     ],
     // ...
 ```
-
-<!-- fd6e94e0c520c8cca276da5567c120302bdaa89d -->
 
 ## Registering the frontend
 
@@ -192,12 +197,11 @@ Let's update the home template so the user can manage their OAuth clients and to
 @endsection
 ```
 
-At this point you can visit `passport.test` in your browser, register, and once you are redirected you should see the Passport components. You may have noticed we registered 3 components but only 2 are visible. The `passport-authorized-clients` component is only visble once you've authorized some clients so it won't show up right away.
+At this point you can visit `passport.test` in your browser, register, and once you are redirected you should see the Passport components. You may have noticed we registered 3 components but only 2 are visible. The `passport-authorized-clients` component is only visible once you've authorized some clients so it won't show up right away.
 
-![The Passport components](/img/passport-guide-part-I-authorization-server/passport-components.png)
+{{< figure src="/img/passport-guide-part-I-authorization-server/passport-components-800.png" link="/img/passport-guide-part-I-authorization-server/passport-components.png" title="The Passport components" class="tc" target="_blank" >}}
 
-<!-- 91699be6d83333cd1841ff40cb942c5850d8277f -->
 
-## Wrapping up
+## Conclusion
 
-TODO
+The Laravel application now serves a fully spec compliant OAuth 2.0 authorization server. Any OAuth 2.0 client will now be able to complete the authorization flow and obtain an access token. In the next part of this series we will build our first client, a server side web app client, using the [Laravel Socialite](https://laravel.com/docs/7.x/socialite) package.
