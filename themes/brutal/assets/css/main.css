@@ -13,6 +13,8 @@
   --link-color: #000;
   --code-bg: #f7f9fc;
   --code-border: #d2ddee;
+  --callout-bg: #f7f7f7;
+  --callout-color: #000;
 
   /* spacing */
   --spacing-none: 0;
@@ -32,6 +34,8 @@
     --link-color: #B4B4B4;
     --code-bg: #2C2C31;
     --code-border: #44444c;
+    --callout-bg: #2c2c31;
+    --callout-color: #d2d2d2;
   }
 }
 
@@ -192,6 +196,23 @@ p > code {
 
 h1:hover .anchor-link, h2:hover .anchor-link, h3:hover .anchor-link, h4:hover .anchor-link {
   visibility: visible;
+}
+
+.callout {
+  padding: var(--spacing-medium);
+  border-left: var(--spacing-small) solid;
+  color: var(--callout-color);
+  background-color: var(--callout-bg);
+  margin-top: var(--spacing-extra-large);
+  margin-bottom: var(--spacing-extra-large);
+}
+
+.warning {
+  border-color: #ff2d20;
+}
+
+.info {
+  border-color: #8338ec;
 }
 
 .tc {

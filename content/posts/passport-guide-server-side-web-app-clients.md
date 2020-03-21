@@ -158,9 +158,11 @@ Route::get('/login/callback', 'Auth\LoginController@loginCallback')->name('login
 Navigate to `http://server-app.test/` and click 'login'. If you aren't already logged in to `passport.test` you will be asked to login. Next you will be asked to grant permission to the app to access your account. Click 'Authorize' and you should be greeted by your new app!
 
 
-{{< figure src="/img/passport-guide-part-II-server-side-web-app-clients/server-auth-prompt-800.png" link="/img/passport-guide-part-II-server-side-web-app-clients/server-auth-prompt.png" title="he server-side web app authorization prompt" class="tc" target="_blank" >}}
+{{< figure src="/img/passport-guide-part-II-server-side-web-app-clients/server-auth-prompt-800.png" link="/img/passport-guide-part-II-server-side-web-app-clients/server-auth-prompt.png" title="The server-side web app authorization prompt" class="tc" target="_blank" >}}
 
-> If you are using Valet and receiving a 404 error you may need to tweak your computer's DNS settings. Sometimes Valet has issues making CURL requests from one Valet app to another. Adding `127.0.0.1` to the DNS servers list in Network Preferences resolves the issue.
+{{< warning >}}
+If you are using Valet and receiving a 404 error you may need to tweak your computer's DNS settings. Sometimes Valet has issues making CURL requests from one Valet app to another. Adding `127.0.0.1` to the DNS servers list in Network Preferences resolves the issue.
+{{</ warning >}}
 
 ## Sessions
 
@@ -287,7 +289,10 @@ session([
 ]);
 ```
 
-> If you are using Laravel Valet attempting and the cookie session driver attempting to store a large amount of data in the session may cause a 502 Bad Gateway response from the server. This occurs because the buffer NGINX uses to buffer the response from PHP is too small. The easiest solution is to use an alternative session driver such as the `file` driver by changing `SESSION_DRIVER` in your `.env` file.
+
+{{< warning >}}
+If you are using Laravel Valet and the cookie session driver attempting to store a large amount of data in the session may cause a 502 Bad Gateway response from the server. This occurs because the buffer NGINX uses to buffer the response from PHP is too small. The easiest solution is to use an alternative session driver such as the `file` driver by changing `SESSION_DRIVER` in your `.env` file.
+{{</ warning >}}
 
 Finally the user can be redirected to their intended destination using the `redirect()->intended` helper, falling back to the 'home' route. The completed method should look like this:
 
