@@ -3,7 +3,7 @@ title: "Passport Guide Part II: Server-side web app clients"
 description: "Building server-sidede web app clients with Laravel Passport"
 images: ["img/passport-guide.png"]
 date: 2020-04-12
-draft: true
+draft: false
 ---
 ## Introduction
 
