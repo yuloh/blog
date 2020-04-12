@@ -1,5 +1,8 @@
 ---
 title: "Passport Guide Part I: Building the Authorization server"
+description: "Building a Laravel Passport authorization server"
+images: ["img/passport-guide.png"]
+tags: ["laravel", "php", "OAuth 2.0", "Passport"]
 date: 2020-03-24
 draft: false
 ---
