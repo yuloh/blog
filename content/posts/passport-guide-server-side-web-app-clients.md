@@ -1,6 +1,6 @@
 ---
 title: "Passport Guide Part II: Server-side web app clients"
-date: 2020-03-21
+date: 2020-04-12
 draft: true
 ---
 ## Introduction
@@ -36,7 +36,7 @@ Open `server-app.test` in your browser and you should see the welcome page. If y
 
 Go ahead and delete every controller in `app/Http/Controllers/Auth` except for the login controller. You can also delete the blade templates in `resources/views/auth`. The `CreatePasswordResetsTable` migration (`migrations/2014_10_12_100000_create_password_resets_table.php`) should be deleted too.
 
-Navigate to the `LoginController` in your editor (you can find it at `app/Http/Controllers/Auth/LoginController.php`). Right now it's almost empty. That's because most of the logic is in the `AuthenticatesUsers` trait. The default login code doesn't work for OAuth login so go ahead and delete the `use AuthenticatesUsers` line and the `redirectTo` property.
+Navigate to the `LoginController` in your editor (you can find it at `app/Http/Controllers/Auth/LoginController.php`). Right now it's almost empty. That's because most of the logic is in the `AuthenticatesUsers` trait. The default login code doesn't work for OAuth login so go ahead and delete the `use AuthenticatesUsers` line.
 
 Since you aren't using the trait anymore you need to write your own `login` and `logout` methods. The `login` method will kick off the OAuth flow -- it needs to redirect to the Passport server's `/oauth/authorize` route and include the necessary OAuth parameters in the query string. The final redirect URI will look something like this:
 
@@ -47,12 +47,12 @@ http://passport.test/oauth/authorize?client_id=3&redirect_uri=http://server-app.
 The query parameters are defined by the OAuth 2.0 specification. The OAuth client needs to use these exact parameters or the request will be rejected. You don't need to remember this but it's helpful to understand what they mean:
 
 - client_id: This is the unique ID for the client making the request. With Passport this is the client model's primary key. You can get this from the 'OAuth Clients' Vue component we setup in the previous chapter.
-- redirect_uri: This is the redirect URI you registered for the client earlier. It's the URI the user's browser will be redirected to after they approve or deny the authorization reuest. The redirect_uri is optional if the client only registered a single redirect URI but most clients will include it anyway.
+- redirect_uri: This is the redirect URI you registered for the client earlier. It's the URI the user's browser will be redirected to after they approve or deny the authorization request. The redirect_uri is optional if the client only registered a single redirect URI but most clients will include it anyway.
 - response_type: All you really need to know about this is it should always be included and set to `code`. The OAuth 2.0 specification used to support an alternative flow called the Implicit grant and you would make an Implicit grant request by setting `response_type` to `token`. The Implicit grant is insecure and no longer recommended so you shouldn't ever need to change this parameter.
-- scope: This parameter is used to let the authorization server know what permissions you are requesting. We will learn more about this in a later section.
+- scope: This parameter is used to let the authorization server know what permissions you are requesting. We will learn more about this in a later post.
 - state: The state parameter is used to protect against cross site request forgery (CSRF) attacks. The client generates a cryptographically secure random string before making the request. When the user's browser is redirected back to the client the state token returned from the authorization server is compared to the state token we generated earlier. If they don't match we know the redirect didn't come from the same authorization server we originally redirected to.
 
-You could write all of this code yourself but it's tedious you need to be really careful to avoid security vulnerabilites. Luckily Laravel created an official package for authenticating with OAuth providers called [Socialite](https://laravel.com/docs/6.x/socialite). Socialite doesn't ship with an official driver for Passport servers it's available as a third party package. To pull in Socialite and the Passport driver install the `matt-allan/passport-socialite` package with Composer.
+You could write all of this code yourself but it's tedious, and you need to be really careful to avoid security vulnerabilites. Luckily Laravel created an official package for authenticating with OAuth providers called [Socialite](https://laravel.com/docs/6.x/socialite). Socialite doesn't ship with an official driver for Passport servers it's available as a third party package. To pull in Socialite and the Passport driver install the `matt-allan/passport-socialite` package with Composer.
 
 ```
 composer require matt-allan/passport-socialite
@@ -152,7 +152,7 @@ This is everything you need to login. Since the controller methods have changed 
 
 Route::get('/login', 'Auth\LoginController@login')->name('login');
 
-Route::get('/login/callback', 'Auth\LoginController@loginCallback')->name('login-callback');
+Route::get('/login/callback', 'Auth\LoginController@loginCallback')->name('login.callback');
 ```
 
 Navigate to `http://server-app.test/` and click 'login'. If you aren't already logged in to `passport.test` you will be asked to login. Next you will be asked to grant permission to the app to access your account. Click 'Authorize' and you should be greeted by your new app!
@@ -212,8 +212,6 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    protected $rememberTokenName = null;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -240,6 +238,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $rememberTokenName = null;
 }
 
 ```
@@ -248,7 +248,7 @@ Now you can migrate the database: `php artisan migrate`.
 
 Once the database is migrated you can add the login and logout functionality. When the callback is received and the user's info is retrieved with Socialite's `user` method the `Socialite` user can be used to look up the app's own User model. The socialite `User` has an `id` property that corresponds to the user's primary key in the Passport database. This `id` will be stored as the `provider_uid` on the User model. Using the `provider_uid` rather than the user's email ensures that the lookup will still work when a user changes their email.
 
-Open the `LoginController` and rename the `$user` variable to `$socialUser`. On the next line user the User model's `firstOrNew` method to find or create the user via the `provider_uid`. Because `provider_uid` is not mass assignable we will use the `unguarded` method.
+Open the `LoginController` and rename the `$user` variable to `$socialiteUser`. On the next line user the User model's `firstOrNew` method to find or create the user via the `provider_uid`. Because `provider_uid` is not mass assignable we will use the `unguarded` method.
 
 To create our user we will need to retrieve the user's name and email from the Socialite user. Any additional attributes such as `email_verified_at` can be retrieved using the `getRaw` method. Finally we will call the `save` method to ensure the user is either created or updated.
 
@@ -261,7 +261,7 @@ $socialiteUser = Socialite::driver('passport')->user();
 
 $user = User::unguarded(function () use ($socialiteUser) {
     return tap(User::firstOrNew(['provider_uid' => $socialiteUser->id])
-        ->forceFill([
+        ->fill([
             'name' => $socialiteUser->name,
             'email' => $socialiteUser->email,
             'email_verified_at' => Arr::get($socialiteUser->getRaw(), 'email_verified_at'),
@@ -269,12 +269,24 @@ $user = User::unguarded(function () use ($socialiteUser) {
 });
 ```
 
-As there's a User model available you can now login. This is easily accomplished by calling the `login` method on the `auth` helper.
+{{< warning >}}
+It's absolutely essential your Passport server uses HTTPS in production. Otherwise an attacker could MITM the connection between your client and server, returning a different user ID, and login as someone else.
+{{</ warning >}}
+
+Now that you have a User you can login. This is easily accomplished by calling the `login` method on the `auth` helper.
 
 ```php
 <?php
 
 auth()->login($user);
+```
+
+Anytime you log a user in you need to regenerate the session, regardless of the login method. This is really important to prevent session fixation attacks.
+
+```php
+<?php
+
+session()->regenerate();
 ```
 
 Logging the user in will set a cookie which allows the user to access pages requiring authentication in the client app. However this will not allow them to access APIs provided by the Passport server. To do that we will need to remember the access token returned from Socialite. The access token is short lived so it's a good idea to store it in the session rather than in the database. You will also need to store the token expiration and the refresh token so that you can refresh the access token when it expires.
@@ -289,10 +301,9 @@ session([
 ]);
 ```
 
-
-{{< warning >}}
+{{< info >}}
 If you are using Laravel Valet and the cookie session driver attempting to store a large amount of data in the session may cause a 502 Bad Gateway response from the server. This occurs because the buffer NGINX uses to buffer the response from PHP is too small. The easiest solution is to use an alternative session driver such as the `file` driver by changing `SESSION_DRIVER` in your `.env` file.
-{{</ warning >}}
+{{</ info >}}
 
 Finally the user can be redirected to their intended destination using the `redirect()->intended` helper, falling back to the 'home' route. The completed method should look like this:
 
@@ -305,7 +316,7 @@ public function loginCallback()
 
     $user = User::unguarded(function () use ($socialiteUser) {
         return tap(User::firstOrNew(['provider_uid' => $socialiteUser->id])
-            ->forceFill([
+            ->fill([
                 'name' => $socialiteUser->name,
                 'email' => $socialiteUser->email,
                 'email_verified_at' => Arr::get($socialiteUser->getRaw(), 'email_verified_at'),
@@ -314,13 +325,15 @@ public function loginCallback()
 
     auth()->login($user);
 
+    session()->regenerate();
+
     session([
         'token' => $socialiteUser->token,
         'refresh_token' => $socialiteUser->refreshToken,
         'expires_at' => now()->addSeconds($socialiteUser->expiresIn),
     ]);
 
-    return redirect()->intended(route('home'));
+    return redirect()->intended($this->redirectTo);
 }
 ```
 
