@@ -7,7 +7,7 @@ draft: false
 ---
 ## Introduction
 
-This is Part III of a multi-part series about Laravel Passport. In [part I](./../passport-guide-auth-server) we built the authorization server. In [part II](./../passport-guide-server-side-web-app-clients) we build a server-side web app client. Today we are going to build our secound OAuth client, a client-side JavaScript web application.
+This is Part III of a multi-part series about Laravel Passport. In [part I](./../passport-guide-auth-server) we built the authorization server. In [part II](./../passport-guide-server-side-web-app-clients) we built a server-side web app client. Today we are going to build our secound OAuth client, a client-side JavaScript web application.
 
 In this guide we are going to build the client using [VueJS](https://vuejs.org/) and [NuxtJS](https://nuxtjs.org/), but the same principles apply to building clients with React or any other JavaScript framework that runs on the client.
 
