@@ -11,7 +11,6 @@
   {{ $style := slice $normalize $main $syntax $syntaxDark | resources.Concat "css/bundle.css" | minify | fingerprint }}
   <link rel="preload" href="{{ $style.Permalink }}" as="style">
   <link rel="stylesheet" href="{{ $style.Permalink }}">
-  <link href="https://fonts.googleapis.com/css?family=Lato&display=fallback" rel="stylesheet">
     {{ range .AlternativeOutputFormats -}}
       {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
     {{ end -}}

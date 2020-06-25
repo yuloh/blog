@@ -1,6 +1,8 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:300,700|Merriweather:300italic,300);
+
 :root {
   /* font families */
-  --serif: Merriweather,'Book Antiqua',Georgia,'Century Schoolbook', serif;
+  --serif: Merriweather,Book Antiqua,Georgia,Century Schoolbook,serif;
   --sans-serif: 'Lato', sans-serif;
 
   /* Typography */
