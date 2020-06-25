@@ -9,7 +9,7 @@ draft: false
 
 Lately I've been building [a desktop app](https://github.com/matt-allan/expanse/) with [Electron](https://www.electronjs.org/) that helps you avoid repetitive strain injuries. Electron lets you build native desktop apps using web technologies. Combining native and web development creates unique security risks that weren't readily apparent to me when I started.
 
-The Electron docs have [a great section on security](https://www.electronjs.org/docs/tutorial/security), but there aren't a lot of examples showing how an Electron app built following those best practices works. I'm going to attempt to fill that gap with this article.
+The Electron docs have [a great section on security](https://www.electronjs.org/docs/tutorial/security), but there aren't a lot of examples showing how an Electron app built following those best practices actually works. I'm going to attempt to fill that gap with this article.
 
 ## Background 
 
@@ -19,7 +19,7 @@ The main process can access any [Node.JS](https://nodejs.org/en/) API. It can re
 
 The problem with exposing native capabilities to the renderer is any untrusted code executing in the renderer process has access to those native capabilities too. If you expose the filesystem module, untrusted code could read SSH keys, write malware, or wipe the filesystem.
 
-Even if you don't _intentionally_ run untrusted code, your app might be vulnerable to [cross-site scripting attacks](https://owasp.org/www-community/attacks/xss/). If an NPM module you depend on has a XSS vulnerability or is compromised your app is going to run untrusted code. I checked my `node_modules` folder for React's [`dangerouslySetInnerHTML`](https://reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml) and found 218 usages. The risk is real. So how do you minimize the risks?
+Even if you don't _intentionally_ run untrusted code, your app might be vulnerable to [cross-site scripting attacks](https://owasp.org/www-community/attacks/xss/). If an NPM module you depend on has a XSS vulnerability or gets compromised your app is going to run untrusted code. I checked my `node_modules` folder for React's [`dangerouslySetInnerHTML`](https://reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml) and found 218 usages. The risk is real. So how do you minimize the risks?
 
 ## The remote module
 
@@ -46,7 +46,9 @@ A common way to do this is to add methods to the `window` object, i.e.
 ```js
 import { ipcRenderer } from "electron";
 
-window.setFullscreen = (flag) => ipcRenderer.invoke("setFullscreen", flag);
+window.app = {
+  setFullscreen: (flag) => ipcRenderer.invoke("setFullscreen", flag),
+};
 ```
 
 This pattern has downsides too. If you do this, you can't enable [context isolation](https://www.electronjs.org/docs/tutorial/context-isolation). And if you don't enable context isolation, it's easy to [accidentally leak native APIs to the renderer](https://blog.doyensec.com/2019/04/03/subverting-electron-apps-via-insecure-preload.html).
@@ -55,14 +57,13 @@ This brings us to our final Electron API, the [context bridge](https://www.elect
 
 ## Context Bridge
 
-The context bridge allows you to *safely** expose native APIs to the renderer from the preload script. Our prior example can be written like this with the context bridge:
+The context bridge allows you to *safely* expose native APIs to the renderer from the preload script. Our prior example can be written like this with the context bridge:
 
 ```js
 import { ipcRenderer, contextBridge } from "electron";
 
-contextBridge.exposeInMainWorld(
-  "setFullscreen",
-  (flag) => ipcRenderer.invoke("setFullscreen", flag)
+contextBridge.exposeInMainWorld("app", {}
+  setFullscreen: (flag) => ipcRenderer.invoke("setFullscreen", flag),
 );
 ```
 
